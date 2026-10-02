@@ -1,0 +1,691 @@
+/* ==========================================================================
+   WEBDUNK — Showcase Landingpage
+   Datei : assets/css/style.css
+   Stil   : Clean & modern, ausschliesslich Schwarz / Weiss / Grau
+   Hinweis: Reines CSS (kein @apply), damit die Styles unabhaengig vom
+            Tailwind-Play-CDN funktionieren.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1 · DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  --ink: #0A0A0A;
+  --graphite: #141414;
+  --steel: #3F3F46;
+  --slate: #6B6B6B;
+  --line: #E2E2E2;
+  --mist: #F5F5F5;
+  --ash: #EDEDED;
+  --white: #FFFFFF;
+
+  --rail-w: 88px;            /* Breite der fixen linken Menüleiste */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-inout: cubic-bezier(.65, .05, .36, 1);
+}
+@media (min-width: 1280px) { :root { --rail-w: 260px; } }
+
+/* --------------------------------------------------------------------------
+   2 · RESET & BASIS
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-x: hidden; text-rendering: optimizeLegibility; }
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--ink); color: #fff; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+.screen--dark :focus-visible { outline-color: #fff; }
+
+/* Dezente Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--mist); }
+::-webkit-scrollbar-thumb { background: #c9c9c9; border: 3px solid var(--mist); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--slate); }
+
+.skip-link {
+  position: fixed; left: -999px; top: 12px; z-index: 100;
+  background: var(--ink); color: #fff; padding: 10px 16px; font-size: 13px; border-radius: 4px;
+}
+.skip-link:focus { left: 12px; }
+
+/* --------------------------------------------------------------------------
+   3 · LAYOUT — Rail-Offset, Full-Screen-Sections
+   -------------------------------------------------------------------------- */
+.with-rail { padding-left: 0; }
+@media (min-width: 768px) { .with-rail { padding-left: var(--rail-w); } }
+
+.screen { position: relative; width: 100%; }
+
+/* Jede Kern-Sektion ist ein Full-Screen-Takeover.
+   Desktop: wird per GSAP gepinnt. Mobile: normaler Scroll mit 100svh. */
+.screen__inner {
+  position: relative;
+  z-index: 1;                    /* Inhalt liegt über den Ghost-Nummern (z-index 0),
+                                    der Takeover-Veil (z-index 6) bleibt darüber */
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5.5rem;
+  padding-bottom: 4.5rem;
+}
+@media (min-width: 768px) {
+  .screen__inner { padding-top: 5rem; padding-bottom: 5rem; }
+}
+
+.screen--dark { background: var(--ink); color: #fff; }
+.screen--light { background: var(--white); color: var(--ink); }
+.screen--mist { background: var(--mist); }
+.screen--ash { background: var(--ash); }
+
+/* --------------------------------------------------------------------------
+   4 · TYPOGRAFIE-BAUSTEINE
+   -------------------------------------------------------------------------- */
+.hero-title {
+  font-size: clamp(3.4rem, 15vw, 13.5rem);
+  font-weight: 900; line-height: .9; letter-spacing: -0.055em; margin: 0;
+}
+.section-title {
+  font-size: clamp(2.4rem, 7.2vw, 6rem);
+  font-weight: 800; line-height: .94; letter-spacing: -0.045em; margin: 0;
+}
+.section-sub { font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.62; max-width: 48ch; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--slate);
+}
+.eyebrow--light { color: rgba(255, 255, 255, .5); }
+.eyebrow__dot { width: 6px; height: 6px; border-radius: 99px; background: currentColor; }
+
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; text-transform: uppercase; letter-spacing: .2em; margin: 0 0 .35rem; opacity: .55;
+}
+.meta-value { margin: 0; font-size: .95rem; }
+
+/* --------------------------------------------------------------------------
+   5 · BUTTONS & CHIPS
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: 14px 26px; font-size: .9rem; font-weight: 500;
+  border-radius: 99px; border: 1px solid transparent;
+  transition: background-color .45s var(--ease-out), color .45s var(--ease-out),
+              border-color .45s var(--ease-out), transform .45s var(--ease-out);
+  will-change: transform;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn svg { transition: transform .45s var(--ease-out); }
+.btn:hover svg { transform: translate3d(0, 2px, 0); }
+
+.btn--dark { background: var(--ink); color: #fff; }
+.btn--dark:hover { background: var(--steel); }
+.btn--light { background: #fff; color: var(--ink); }
+.btn--light:hover { background: var(--ash); }
+.btn--ghost-dark { border-color: var(--line); color: var(--ink); }
+.btn--ghost-dark:hover { background: var(--mist); border-color: var(--ink); }
+.btn--outline-light { border-color: rgba(255, 255, 255, .3); color: #fff; }
+.btn--outline-light:hover { background: #fff; color: var(--ink); border-color: #fff; }
+
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 8px 16px; border-radius: 99px;
+  font-size: .78rem; letter-spacing: .02em;
+  border: 1px solid var(--line); background: #fff;
+}
+.chip--dark { background: rgba(255, 255, 255, .04); border-color: rgba(255, 255, 255, .14); color: rgba(255, 255, 255, .8); }
+.chip--filter { transition: background-color .35s var(--ease-out), color .35s var(--ease-out), border-color .35s var(--ease-out); }
+.chip--filter.is-active { background: var(--ink); color: #fff; border-color: var(--ink); }
+/* In dunklen Sektionen invertiert der aktive Filter-Chip (sonst unsichtbar) */
+.screen--dark .chip--filter.is-active { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* --------------------------------------------------------------------------
+   MARKEN-LOGO — assets/img/logo.jpg (schwarz/weiss, JPEG ohne Alpha)
+   Groesse wird pro Einsatzort gesetzt. Auf dunklen Flaechen laeuft das Logo
+   invertiert, damit der helle JPEG-Hintergrund im Schwarz verschwindet.
+   -------------------------------------------------------------------------- */
+.brand-logo { display: block; width: auto; height: 34px; }   /* Default: Mobile Top-Bar */
+.brand-logo--rail { width: 48px; height: auto; transition: opacity .35s var(--ease-out); }
+.rail-brand:hover .brand-logo--rail { opacity: .7; }
+.brand-logo--drawer { height: 30px; }
+.brand-logo--footer { height: 88px; }
+.brand-logo--invert { filter: invert(1); }
+
+@media (min-width: 1280px) { .brand-logo--rail { width: 156px; } }
+
+
+/* --------------------------------------------------------------------------
+   6 · FIXE LINKE MENÜLEISTE (RAIL) — 9 Menüpunkte
+   -------------------------------------------------------------------------- */
+.rail { width: var(--rail-w); }
+.rail-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 8px; }
+
+.rail-link {
+  position: relative;
+  display: flex; width: 100%; align-items: center; gap: .75rem;
+  padding: .62rem .5rem; border-radius: 4px;
+  font-size: .82rem; color: var(--slate);
+  transition: color .35s var(--ease-out), background-color .35s var(--ease-out);
+}
+.rail-link__num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .08em; opacity: .7; }
+.rail-link__label { display: none; }
+
+.rail-link::before {                        /* Aktiv-Indikator links */
+  content: ''; position: absolute; left: 0; top: 50%; width: 2px; height: 0;
+  background: var(--ink); transform: translateY(-50%);
+  transition: height .45s var(--ease-out);
+}
+.rail-link:hover, .rail-link.is-active { color: var(--ink); background: var(--mist); }
+.rail-link.is-active::before { height: 60%; }
+
+@media (min-width: 1280px) {
+  .rail-link { justify-content: flex-start; padding: .62rem 1rem; font-size: .86rem; }
+  .rail-link__label { display: inline; }
+}
+/* Unter 1280px: Label erscheint als Chip neben der Leiste */
+@media (max-width: 1279.98px) {
+  .rail-link:hover::after {
+    content: attr(data-label);
+    position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+    background: var(--ink); color: #fff; font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 6px 10px; border-radius: 3px; white-space: nowrap; z-index: 5;
+  }
+}
+
+.rail-menu { display: flex; width: 100%; align-items: center; gap: .7rem; padding: .55rem 1rem; }
+.rail-menu__icon { display: inline-flex; width: 22px; height: 10px; flex-direction: column; justify-content: space-between; }
+.rail-menu__icon span {
+  display: block; width: 100%; height: 1.5px; background: currentColor;
+  transition: transform .45s var(--ease-out), width .45s var(--ease-out);
+}
+.rail-menu:hover .rail-menu__icon span:last-child { width: 60%; }
+
+/* --------------------------------------------------------------------------
+   7 · HALF-SCREEN OVERLAY DRAWER (50vw Desktop / 100vw Mobile)
+   -------------------------------------------------------------------------- */
+.drawer {
+  width: 100vw;
+  transform: translate3d(-100%, 0, 0);      /* Startzustand: links ausserhalb */
+  border-right: 1px solid var(--line);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .22);
+  will-change: transform;
+}
+@media (min-width: 768px) { .drawer { width: 50vw; } }
+
+/* Halbtransparentes Overlay mit Backdrop-Blur (bg-black/50) */
+.drawer-backdrop {
+  position: fixed; inset: 0; z-index: 45;
+  background: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.drawer-backdrop[hidden] { display: none; }
+
+.drawer-close {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 99px; border: 1px solid var(--line);
+  transition: background-color .35s var(--ease-out), color .35s var(--ease-out);
+}
+.drawer-close:hover { background: var(--ink); color: #fff; }
+
+.drawer-link {
+  display: flex; align-items: baseline; gap: 1rem;
+  padding: 1rem 0; font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  font-weight: 600; letter-spacing: -0.03em; color: var(--slate);
+  transition: color .4s var(--ease-out), padding-left .5s var(--ease-out);
+}
+.drawer-link:hover, .drawer-link.is-active { color: var(--ink); padding-left: .6rem; }
+.drawer-link__num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; opacity: .6; }
+.drawer-link__arrow {
+  margin-left: auto; opacity: 0; transform: translate3d(-8px, 0, 0);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+}
+.drawer-link:hover .drawer-link__arrow { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------------
+   8 · HERO-ATMOSPHÄRE (Glow, Raster, Scroll-Cue)
+   -------------------------------------------------------------------------- */
+.hero-glow {
+  position: absolute; inset: -20% -10% auto -10%; height: 90%;
+  background:
+    radial-gradient(60% 55% at 22% 34%, rgba(255, 255, 255, .13), transparent 70%),
+    radial-gradient(45% 45% at 82% 12%, rgba(255, 255, 255, .07), transparent 72%);
+  filter: blur(6px); pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, .05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, .05) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(120% 90% at 50% 30%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, #000 30%, transparent 78%);
+}
+
+.scroll-cue {
+  position: absolute; bottom: 28px; right: 24px; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+@media (min-width: 768px) { .scroll-cue { bottom: 34px; right: 46px; } }
+.scroll-cue__line { position: relative; width: 1px; height: 68px; background: rgba(255, 255, 255, .16); overflow: hidden; }
+.scroll-cue__line::after {
+  content: ''; position: absolute; inset: 0; background: #fff;
+  animation: cueDown 2.4s var(--ease-inout) infinite;
+}
+@keyframes cueDown { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(100%); } }
+
+/* Film-Grain über der gesamten Seite */
+.grain {
+  position: fixed; inset: -200%; z-index: 60; pointer-events: none; opacity: .22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+  animation: grainShift 8s steps(6) infinite;
+  mix-blend-mode: multiply;
+}
+@keyframes grainShift {
+  0%   { transform: translate3d(0, 0, 0); }
+  20%  { transform: translate3d(-3%, 2%, 0); }
+  40%  { transform: translate3d(2%, -3%, 0); }
+  60%  { transform: translate3d(-2%, -2%, 0); }
+  80%  { transform: translate3d(3%, 1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Scroll-Fortschritt oben */
+.scroll-progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 70; background: transparent; }
+.scroll-progress__bar {
+  display: block; height: 100%; width: 0%;
+  background: var(--ink);
+  transition: width .12s linear;
+}
+/* Custom Cursor (nur Zeigegeräte).
+   mix-blend-mode: difference => der Cursor invertiert automatisch gegen
+   weisse und schwarze Sektionen (kein manuelles Umschalten nötig). */
+.cursor {
+  position: fixed; top: 0; left: 0; z-index: 65; pointer-events: none;
+  border-radius: 99px; opacity: 0; mix-blend-mode: difference;
+  transition: opacity .3s linear;
+}
+.cursor--dot { width: 6px; height: 6px; background: #fff; margin: -3px 0 0 -3px; }
+.cursor--ring {
+  width: 34px; height: 34px; margin: -17px 0 0 -17px;
+  border: 1px solid rgba(255, 255, 255, .8);
+  transition: opacity .3s linear, width .35s var(--ease-out), height .35s var(--ease-out),
+              margin .35s var(--ease-out), background-color .35s var(--ease-out);
+}
+.cursor--ring.is-hover {
+  width: 64px; height: 64px; margin: -32px 0 0 -32px;
+  background: rgba(255, 255, 255, .18);
+}
+.cursor-visible .cursor { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .cursor { display: none !important; } }
+
+/* --------------------------------------------------------------------------
+   9 · INFINITE MARQUEE BANNER
+   Läuft per GSAP (mit Scroll-Geschwindigkeit) — ohne GSAP greift die
+   CSS-Keyframe-Variante über .marquee--css (siehe main.js).
+   -------------------------------------------------------------------------- */
+.marquee {
+  position: relative; z-index: 2;
+  display: flex; overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  padding: 18px 0;
+}
+.marquee--dark {
+  background: var(--ink); color: #fff;
+  border-color: rgba(255, 255, 255, .12);
+}
+.marquee__track { display: flex; flex: none; will-change: transform; }
+.marquee__group {
+  display: flex; flex: none; align-items: center; gap: 42px; padding-right: 42px;
+  white-space: nowrap;
+}
+.marquee__item {
+  display: inline-flex; align-items: center; gap: 42px;
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem);
+  font-weight: 600; letter-spacing: -0.02em; text-transform: uppercase;
+}
+.marquee__item::after {
+  content: ''; width: 7px; height: 7px; border-radius: 99px; background: currentColor; opacity: .35;
+}
+/* Reiner CSS-Fallback (endless loop) */
+.marquee--css .marquee__track { animation: marqueeLoop 26s linear infinite; }
+@keyframes marqueeLoop { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+
+/* --------------------------------------------------------------------------
+   10 · SPLIT-TEXT (Masken für Zeilen-/Zeichen-Reveals) + Reveal-Basis
+   -------------------------------------------------------------------------- */
+.split-line { display: block; overflow: hidden; }
+.split-word { display: inline-block; overflow: hidden; vertical-align: top; }
+.split-char, .split-inner { display: inline-block; will-change: transform; }
+
+/* Elemente, die per GSAP eingeblendet werden. Nur wenn JS läuft (html.js),
+   werden sie vorab versteckt — sonst wären sie ohne JS unsichtbar. */
+.js [data-reveal] { opacity: 0; }
+.js [data-reveal="up"] { transform: translate3d(0, 28px, 0); }
+.js [data-reveal="scale"] { transform: scale(1.06); }
+.js .split-char, .js .split-inner { transform: translate3d(0, 110%, 0); }
+
+/* --------------------------------------------------------------------------
+   11 · BROWSER-FRAME (interaktive Klicklotse-Vorschau)
+   -------------------------------------------------------------------------- */
+.frame {
+  position: relative; overflow: hidden; border-radius: 14px;
+  border: 1px solid var(--line); background: #fff;
+  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, .45);
+}
+.frame__bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-bottom: 1px solid var(--line); background: var(--mist);
+}
+.frame__dots { display: flex; gap: 6px; }
+.frame__dots span { width: 9px; height: 9px; border-radius: 99px; background: #cfcfcf; }
+.frame__url {
+  flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; color: var(--slate);
+  background: #fff; border: 1px solid var(--line); border-radius: 99px; padding: 5px 12px;
+}
+.frame__screen {
+  position: relative; aspect-ratio: 16 / 10;
+  --accent: #1F6F5C;
+  background: #fff; overflow: hidden;
+}
+.frame__nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid #efefef;
+  transition: background-color .5s var(--ease-out);
+}
+.frame__brand { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; }
+.frame__brand span { width: 10px; height: 10px; border-radius: 3px; background: var(--accent); transition: background-color .5s var(--ease-out); }
+.frame__links { display: none; gap: 14px; font-size: 10px; color: #7a7a7a; }
+@media (min-width: 520px) { .frame__links { display: flex; } }
+.frame__body { padding: 18px 16px; }
+.frame__headline {
+  font-size: clamp(1.05rem, 2.1vw, 1.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+}
+.frame__sub { margin-top: 8px; font-size: 12px; color: #7a7a7a; max-width: 40ch; }
+.frame__cta {
+  display: inline-flex; margin-top: 14px; padding: 7px 14px; border-radius: 99px;
+  background: var(--accent); color: #fff; font-size: 11px; font-weight: 600;
+  transition: background-color .5s var(--ease-out);
+}
+.frame__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.frame__card {
+  border: 1px solid #ececec; border-radius: 8px; padding: 10px; min-height: 74px;
+  display: flex; flex-direction: column; justify-content: space-between; background: #fcfcfc;
+}
+.frame__card b { font-size: 10px; font-weight: 600; }
+.frame__card i { display: block; height: 4px; border-radius: 99px; background: #e4e4e4; width: 70%; }
+.frame__card i + i { width: 45%; margin-top: 5px; }
+.frame__glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(70% 60% at 80% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+  transition: background .5s var(--ease-out);
+}
+
+/* Tabs zum Umschalten der Demos */
+.demo-tab {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: #fff;
+  text-align: left; transition: border-color .4s var(--ease-out), background-color .4s var(--ease-out), transform .4s var(--ease-out);
+}
+.demo-tab:hover { transform: translateX(3px); }
+.demo-tab.is-active { border-color: var(--ink); background: var(--ink); color: #fff; }
+.demo-tab__name { font-size: .95rem; font-weight: 600; }
+.demo-tab__meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .14em; opacity: .6; }
+.demo-tab__swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+
+/* --------------------------------------------------------------------------
+   12 · KARTEN, PANELS & LISTEN
+   -------------------------------------------------------------------------- */
+.panel { border: 1px solid var(--line); background: #fff; border-radius: 14px; }
+.panel--dark { background: var(--graphite); border-color: rgba(255, 255, 255, .1); color: #fff; }
+.panel--pad { padding: 26px; }
+
+.benefit {
+  padding: 22px; border-radius: 12px; border: 1px solid var(--line); background: #fff;
+  transition: transform .6s var(--ease-out), border-color .6s var(--ease-out), box-shadow .6s var(--ease-out);
+}
+.benefit:hover { transform: translateY(-4px); border-color: var(--ink); box-shadow: 0 24px 50px -34px rgba(0, 0, 0, .5); }
+.benefit__idx { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .2em; color: var(--slate); }
+.benefit__title { margin: 10px 0 6px; font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+.benefit__text { margin: 0; font-size: .9rem; line-height: 1.62; color: var(--slate); }
+.screen--dark .benefit { background: rgba(255, 255, 255, .03); border-color: rgba(255, 255, 255, .12); }
+.screen--dark .benefit__text { color: rgba(255, 255, 255, .6); }
+
+/* Showcase-Karten mit Invert-Hover */
+.work-card {
+  position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem;
+  min-height: 226px; padding: 26px; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--line); background: #fff; isolation: isolate;
+  transition: color .6s var(--ease-out), border-color .6s var(--ease-out);
+}
+.work-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--ink);
+  transform: translate3d(0, 101%, 0); transition: transform .75s var(--ease-inout);
+}
+.work-card:hover { color: #fff; border-color: var(--ink); }
+.work-card:hover::after { transform: translate3d(0, 0, 0); }
+.work-card__meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .2em; color: var(--slate); transition: color .6s var(--ease-out); }
+.work-card__title { margin: 0; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.03em; }
+.work-card__url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); transition: color .6s var(--ease-out); }
+.work-card:hover .work-card__meta, .work-card:hover .work-card__url { color: rgba(255, 255, 255, .62); }
+.work-card__arrow { transition: transform .6s var(--ease-out); }
+.work-card:hover .work-card__arrow { transform: translate3d(5px, -5px, 0); }
+
+/* Ausgefilterte Showcase-Karten (siehe initShowcaseFilter in main.js) */
+.work-card.is-hidden { display: none; }
+
+/* Showcase in dunklen Sektionen: dunkle Karte, Hover invertiert nach Weiss */
+.screen--dark .work-card { background: rgba(255, 255, 255, .03); border-color: rgba(255, 255, 255, .12); }
+.screen--dark .work-card::after { background: #fff; }
+.screen--dark .work-card:hover { color: var(--ink); border-color: #fff; }
+.screen--dark .work-card__meta, .screen--dark .work-card__url { color: rgba(255, 255, 255, .5); }
+.screen--dark .work-card:hover .work-card__meta,
+.screen--dark .work-card:hover .work-card__url { color: rgba(10, 10, 10, .62); }
+
+/* Service-Zeilen */
+.service-card {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;
+  padding: 26px 24px; border-top: 1px solid var(--line);
+  transition: background-color .55s var(--ease-out), padding-left .55s var(--ease-out);
+}
+.service-card:hover { background: #fff; padding-left: 32px; }
+.screen--light .service-card:hover { background: var(--mist); }
+.service-card__num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .2em; color: var(--slate); }
+.service-card__title { margin: .6rem 0 0; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.03em; }
+.service-list { list-style: none; margin: 0; padding: 0; }
+.service-list li { position: relative; padding-left: 18px; font-size: .88rem; line-height: 1.9; color: var(--slate); }
+.service-list li::before { content: ''; position: absolute; left: 0; top: .82em; width: 6px; height: 1px; background: currentColor; }
+
+/* --------------------------------------------------------------------------
+   13 · TEXTIL-VISUALS (T-Shirt SVG, Material-Swatches, Verfahren)
+   -------------------------------------------------------------------------- */
+.tee svg { overflow: visible; }
+.tee__body { fill: rgba(255, 255, 255, .035); stroke: rgba(255, 255, 255, .45); stroke-width: 1.4; }
+.tee__print-area {
+  fill: none; stroke: rgba(255, 255, 255, .32); stroke-width: 1.2; stroke-dasharray: 7 6;
+}
+.tee__logo { fill: #fff; font: 700 15px 'Inter', sans-serif; letter-spacing: .2em; }
+.tee__logo-sub { fill: rgba(255, 255, 255, .55); font: 400 7px 'JetBrains Mono', monospace; letter-spacing: .28em; }
+
+.swatch {
+  position: relative; height: 118px; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .14);
+}
+.swatch::after {
+  content: ''; position: absolute; inset: 0; opacity: .3; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.swatch--cotton { background: repeating-linear-gradient(45deg, #f4f4f4 0 6px, #e8e8e8 6px 12px); }
+.swatch--fleece { background: repeating-linear-gradient(90deg, #303030 0 5px, #232323 5px 10px); }
+.swatch--workwear { background: repeating-linear-gradient(0deg, #1B1B1B 0 6px, #262626 6px 12px); }
+.swatch__label {
+  position: absolute; left: 12px; bottom: 12px; z-index: 1;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+}
+.swatch--cotton .swatch__label { color: var(--ink); }
+/* Labels auf dunklen Materialmustern bleiben weiss (auch auf hellen Sektionen) */
+.swatch:not(.swatch--cotton) .swatch__label { color: #fff; }
+
+/* T-Shirt-SVG & Swatch-Rahmen in hellen Sektionen (z. B. 04 · Textil Druck) */
+.screen:not(.screen--dark) .tee__body { fill: rgba(10, 10, 10, .035); stroke: rgba(10, 10, 10, .42); }
+.screen:not(.screen--dark) .tee__print-area { stroke: rgba(10, 10, 10, .3); }
+.screen:not(.screen--dark) .tee__logo { fill: var(--ink); }
+.screen:not(.screen--dark) .tee__logo-sub { fill: rgba(10, 10, 10, .55); }
+.screen:not(.screen--dark) .swatch { border-color: var(--line); }
+
+/* --------------------------------------------------------------------------
+   14 · PRINT-SPECS ZEILEN
+   -------------------------------------------------------------------------- */
+.spec-row { display: grid; gap: .35rem; padding: 15px 0; border-top: 1px solid var(--line); }
+.spec-row dt {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--slate);
+}
+.spec-row dd { margin: 0; font-size: .92rem; line-height: 1.55; }
+@media (min-width: 900px) {
+  .spec-row { grid-template-columns: 200px 1fr; align-items: baseline; gap: 1.5rem; }
+}
+
+/* --------------------------------------------------------------------------
+   15 · TAKEOVER-VEIL & GHOST-NUMMERN
+   Der Veil liegt über der gepinnten Sektion und blendet am Ende der
+   Scrub-Strecke die Kontrastfarbe ein -> Übergabe an die Folgesektion.
+   -------------------------------------------------------------------------- */
+.screen__veil {
+  position: absolute; inset: 0; z-index: 6;
+  background: var(--veil, var(--ink)); opacity: 0; pointer-events: none;
+}
+/* Die Veil-Farbe ist IMMER die Farbe der Folgesektion -> die Übergabe läuft
+   nahtlos und es entstehen keine leeren Vollbild-Flächen.
+   Bei strikt alternierenden Sektionen entspricht sie automatisch der
+   Kontrastfarbe (hell -> schwarz, dunkel -> weiss). */
+.screen--dark { --veil: #fff; }
+/* Letzte Sektion vor dem Footer: der Footer ist schwarz -> Veil schwarz. */
+#contact { --veil: var(--ink); }
+
+.ghost {
+  position: absolute; right: 1.5rem; bottom: 0; z-index: 0;
+  font-size: clamp(5rem, 17vw, 15rem); font-weight: 900; line-height: .78;
+  letter-spacing: -0.06em; color: transparent;
+  -webkit-text-stroke: 1px var(--ghost-stroke, rgba(10, 10, 10, .13));
+  pointer-events: none; user-select: none;
+}
+.screen--dark { --ghost-stroke: rgba(255, 255, 255, .16); }
+@media (min-width: 768px) { .ghost { right: 3rem; } }
+
+/* Mobile: Takeover-Effekte deaktivieren (normaler Scrollfluss) */
+@media (max-width: 767.98px) {
+  .screen__veil { display: none; }
+  .ghost { font-size: clamp(5rem, 24vw, 9rem); opacity: .75; }
+}
+
+/* --------------------------------------------------------------------------
+   16 · ACCORDION (Impressum / Datenschutz)
+   -------------------------------------------------------------------------- */
+.acc { border-top: 1px solid rgba(255, 255, 255, .14); }
+.acc:last-of-type { border-bottom: 1px solid rgba(255, 255, 255, .14); }
+.acc__head {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 18px 0; text-align: left;
+}
+.acc__title { font-size: 1rem; font-weight: 500; }
+.acc__icon { position: relative; width: 14px; height: 14px; flex: none; }
+.acc__icon::before, .acc__icon::after {
+  content: ''; position: absolute; background: currentColor;
+  transition: transform .45s var(--ease-out);
+}
+.acc__icon::before { left: 0; top: 50%; width: 100%; height: 1px; transform: translateY(-50%); }
+.acc__icon::after { top: 0; left: 50%; height: 100%; width: 1px; transform: translateX(-50%); }
+.acc.is-open .acc__icon::after { transform: translateX(-50%) scaleY(0); }
+.acc__panel { overflow: hidden; height: 0; }
+.acc__inner { padding-bottom: 22px; font-size: .88rem; line-height: 1.75; color: rgba(255, 255, 255, .62); }
+.acc__inner h4 { margin: 1.1rem 0 .3rem; font-size: .92rem; color: #fff; }
+.acc__inner h4:first-child { margin-top: 0; }
+.acc__inner p { margin: 0 0 .55rem; }
+.acc__inner a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* --------------------------------------------------------------------------
+   17 · FORMULAR (dunkle Sektion)
+   -------------------------------------------------------------------------- */
+.field { display: flex; flex-direction: column; gap: .4rem; }
+.field__label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .55);
+}
+.field__input {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .22);
+  color: #fff; padding: 11px 0; font-size: .95rem; font-family: inherit;
+  transition: border-color .4s var(--ease-out);
+}
+.field__input::placeholder { color: rgba(255, 255, 255, .28); }
+.field__input:focus { outline: none; border-color: #fff; }
+select.field__input { appearance: none; }
+select.field__input option { color: #0A0A0A; }
+.field--error .field__input { border-color: #ff9a9a; }
+.field__error { min-height: .9rem; font-size: .75rem; color: #ff9a9a; }
+
+.checkbox { display: flex; align-items: flex-start; gap: .7rem; font-size: .8rem; line-height: 1.6; color: rgba(255, 255, 255, .62); }
+.checkbox input { margin-top: .25rem; accent-color: #fff; }
+
+/* Checkbox liegt in einem [data-field]-Container: Textfeld-Optik zurücksetzen,
+   damit die Validierung in main.js (input.field__input) weiterhin greift. */
+.checkbox .field__input {
+  width: auto; flex: none; margin-top: .22rem; padding: 0;
+  border: 0; background: transparent; box-shadow: none;
+}
+
+.form-status {
+  font-size: .85rem; color: #fff; opacity: 0; transform: translate3d(0, 6px, 0);
+  transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
+}
+.form-status.is-visible { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------------
+   18 · FOOTER, TO-TOP & MISC
+   -------------------------------------------------------------------------- */
+.to-top {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: .16em; text-transform: uppercase;
+  transition: color .4s var(--ease-out);
+}
+.to-top:hover { color: #fff; }
+.to-top svg { transition: transform .45s var(--ease-out); }
+.to-top:hover svg { transform: translate3d(0, -3px, 0); }
+
+.footer-head {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .45);
+}
+.footer-link { font-size: .85rem; color: rgba(255, 255, 255, .62); transition: color .4s var(--ease-out); }
+.footer-link:hover { color: #fff; }
+
+.edge-line { border-top: 1px solid var(--line); }
+
+/* Hero-Bausteine werden erst per GSAP eingeblendet (nur wenn JS aktiv ist) */
+.js [data-hero] { opacity: 0; }
+
+/* --------------------------------------------------------------------------
+   19 · BARRIEREFREIHEIT / REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .js [data-reveal], .js [data-hero], .js .split-char, .js .split-inner {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-glow, .grain { animation: none; }
+}
+
