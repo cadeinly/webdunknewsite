@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth js cursor-visible is-ready" style="scroll-behavior: smooth;"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webdunk ÔÇö WordPress Vermietung, Klicklotse &amp; Textil Druckerei</title>
+  <meta name="description" content="Webdunk ist die Muttergesellschaft hinter Klicklotse, dem WordPress-Mietmodell f++r Schulen, sowie einer Textil Druckerei f++r T-Shirts, Hoodies und Workwear.">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="canonical" href="https://webdunk.de/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Webdunk ÔÇö Digitale Manufaktur f++r Websites &amp; Textildruck">
+  <meta property="og:description" content="WordPress Vermietung, Schul-Websites mit Klicklotse und Veredelung von Textilien ÔÇô planbar im Monatsabo.">
+  <meta property="og:url" content="https://webdunk.de/">
+
+  <!-- Fonts : Inter (Text) + JetBrains Mono (Labels, Nummern) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Play CDN) ÔÇö siehe README.md fuer den Production-Build -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    /* Tailwind Design-Tokens: ausschliesslich Schwarz / Weiss / Grau */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0A0A0A',        /* Basis-Schwarz */
+            graphite: '#141414',   /* Karten auf Schwarz */
+            steel: '#3F3F46',      /* dunkler Text */
+            slate: '#6B6B6B',      /* Sekundaertext */
+            line: '#E2E2E2',       /* Hairlines */
+            mist: '#F5F5F5',       /* helle Flaechen */
+            ash: '#EDEDED'         /* Wechsel-Flaechen */
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          },
+          letterSpacing: { tightest: '-0.055em' },
+          maxWidth: { shell: '1600px' }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Wird sofort gesetzt: verhindert "Flash of unstyled animation".
+       Faellt GSAP aus, entfernt main.js die Klasse wieder -> alles sichtbar. -->
+  <script>document.documentElement.classList.add('js');</script>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, -apple-system, Segoe UI, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.relative{position:relative}.inset-x-0{left:0px;right:0px}.left-0{left:0px}.top-0{top:0px}.isolate{isolation:isolate}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.mt-12{margin-top:3rem}.mt-14{margin-top:3.5rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2{height:0.5rem}.h-4{height:1rem}.h-screen{height:100vh}.w-1\.5{width:0.375rem}.w-2{width:0.5rem}.w-4{width:1rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.flex-none{flex:none}.-translate-y-0\.5{--tw-translate-y:-0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.gap-x-10{column-gap:2.5rem}.gap-x-12{column-gap:3rem}.gap-x-14{column-gap:3.5rem}.gap-y-10{row-gap:2.5rem}.gap-y-6{row-gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-line > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(226 226 226 / var(--tw-divide-opacity, 1))}.self-end{align-self:flex-end}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.rounded-full{border-radius:9999px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-line{--tw-border-opacity:1;border-color:rgb(226 226 226 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-ink{--tw-bg-opacity:1;background-color:rgb(10 10 10 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/85{background-color:rgb(255 255 255 / 0.85)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-10{padding-bottom:2.5rem}.pb-2{padding-bottom:0.5rem}.pb-20{padding-bottom:5rem}.pb-7{padding-bottom:1.75rem}.pt-1{padding-top:0.25rem}.pt-16{padding-top:4rem}.pt-28{padding-top:7rem}.pt-6{padding-top:1.5rem}.pt-7{padding-top:1.75rem}.pt-8{padding-top:2rem}.font-mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace}.font-sans{font-family:Inter, system-ui, -apple-system, Segoe UI, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-medium{font-weight:500}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.14em\]{letter-spacing:0.14em}.tracking-\[0\.18em\]{letter-spacing:0.18em}.tracking-\[0\.24em\]{letter-spacing:0.24em}.tracking-\[0\.28em\]{letter-spacing:0.28em}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-tight{letter-spacing:-0.025em}.tracking-tightest{letter-spacing:-0.055em}.text-ink{--tw-text-opacity:1;color:rgb(10 10 10 / var(--tw-text-opacity, 1))}.text-slate{--tw-text-opacity:1;color:rgb(107 107 107 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/40{color:rgb(255 255 255 / 0.4)}.text-white\/45{color:rgb(255 255 255 / 0.45)}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/60{color:rgb(255 255 255 / 0.6)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.underline-offset-4{text-underline-offset:4px}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.backdrop-blur-2xl{--tw-backdrop-blur:blur(40px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:justify-between{justify-content:space-between}.md\:p-8{padding:2rem}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-14{padding-left:3.5rem;padding-right:3.5rem}.md\:py-8{padding-top:2rem;padding-bottom:2rem}.md\:pb-14{padding-bottom:3.5rem}.md\:pt-20{padding-top:5rem}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-\[minmax\(0\2c 0\.95fr\)_minmax\(0\2c 1\.05fr\)\]{grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr)}.lg\:grid-cols-\[minmax\(0\2c 0\.9fr\)_minmax\(0\2c 1\.1fr\)\]{grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr)}.lg\:grid-cols-\[minmax\(0\2c 1\.3fr\)_minmax\(0\2c 1fr\)_minmax\(0\2c 1fr\)\]{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr)}.lg\:grid-cols-\[minmax\(0\2c 1fr\)_minmax\(0\2c 1\.05fr\)\]{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}.lg\:grid-cols-\[minmax\(0\2c 1fr\)_minmax\(0\2c 1\.1fr\)\]{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}.lg\:justify-between{justify-content:space-between}.lg\:gap-16{gap:4rem}}@media (min-width: 1280px){.xl\:block{display:block}.xl\:inline{display:inline}.xl\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.xl\:px-24{padding-left:6rem;padding-right:6rem}.xl\:px-7{padding-left:1.75rem;padding-right:1.75rem}}</style></head>
+<body class="bg-white font-sans text-ink antialiased" style="">
+
+  <!-- Sprungmarke f++r Screenreader / Tastaturnutzung -->
+  <a href="#klicklotse" class="skip-link">Direkt zum Inhalt springen</a>
+
+  <!-- ============================================================
+       ATMOSPH+äRE : Film-Grain, Scroll-Progress, Custom Cursor
+       ============================================================ -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true">
+    <span id="scroll-progress-bar" class="scroll-progress__bar" style="width: 0%;"></span>
+  </div>
+  <div class="cursor cursor--ring" id="cursor-ring" aria-hidden="true" style="transform: translate3d(378px, 244px, 0px);"></div>
+  <div class="cursor cursor--dot" id="cursor-dot" aria-hidden="true" style="transform: translate3d(378px, 244px, 0px);"></div>
+
+  <!-- ============================================================
+       1 -À FIXE LINKE MEN+£LEISTE (Desktop)
+           Zeigt alle 9 strukturierten Men++punkte. Ab 1280px mit Labels,
+           darunter nur Nummern + Label-Chip beim Hover.
+       ============================================================ -->
+  <aside id="rail" class="rail fixed left-0 top-0 z-40 hidden h-screen flex-col justify-between border-r border-line bg-white md:flex">
+    <div class="px-5 pt-7 xl:px-7">
+      <a href="#home" class="inline-flex items-baseline gap-1" data-target="#home" aria-label="Webdunk ÔÇö zum Seitenanfang">
+        <span class="text-2xl font-black tracking-tightest">WD</span>
+        <span class="h-2 w-2 -translate-y-0.5 rounded-full bg-ink"></span>
+      </a>
+      <p class="mt-3 hidden text-[11px] uppercase leading-relaxed tracking-[0.18em] text-slate xl:block">
+        Digitale<br>Manufaktur<br>seit 2015
+      </p>
+    </div>
+
+    <!-- Die 9 Men++punkte -->
+    <nav id="rail-nav" class="rail-nav" aria-label="Hauptnavigation">
+      <button type="button" class="rail-link is-active" data-target="#home" data-label="Home" aria-current="true"><span class="rail-link__num">01</span><span class="rail-link__label">Home</span></button>
+      <button type="button" class="rail-link" data-target="#klicklotse" data-label="Klicklotse"><span class="rail-link__num">02</span><span class="rail-link__label">Klicklotse</span></button>
+      <button type="button" class="rail-link" data-target="#wp-renting" data-label="WP Renting"><span class="rail-link__num">03</span><span class="rail-link__label">WP Renting</span></button>
+      <button type="button" class="rail-link" data-target="#textil" data-label="Textil Druckerei"><span class="rail-link__num">04</span><span class="rail-link__label">Textil Druckerei</span></button>
+      <button type="button" class="rail-link" data-target="#showcase" data-label="Showcase"><span class="rail-link__num">05</span><span class="rail-link__label">Showcase</span></button>
+      <button type="button" class="rail-link" data-target="#specs" data-label="Print Specs"><span class="rail-link__num">06</span><span class="rail-link__label">Print Specs</span></button>
+      <button type="button" class="rail-link" data-target="#about" data-label="About"><span class="rail-link__num">07</span><span class="rail-link__label">About</span></button>
+      <button type="button" class="rail-link" data-target="#services" data-label="Services"><span class="rail-link__num">08</span><span class="rail-link__label">Services</span></button>
+      <button type="button" class="rail-link" data-target="#contact" data-label="Contact"><span class="rail-link__num">09</span><span class="rail-link__label">Contact</span></button>
+    </nav>
+
+    <div class="px-5 pb-7 xl:px-7">
+      <!-- Men++-Trigger: +Âffnet das Half-Screen-Overlay -->
+      <button type="button" class="rail-menu" data-drawer-open="" aria-label="Men++ +Âffnen" aria-expanded="false" aria-controls="nav-drawer">
+        <span class="rail-menu__icon" aria-hidden="true"><span></span><span></span></span>
+        <span class="hidden text-[11px] uppercase tracking-[0.18em] xl:inline">Men++</span>
+      </button>
+      <p class="mt-6 hidden text-[10px] uppercase tracking-[0.2em] text-slate xl:block">-® <span data-year="">2026</span> Webdunk</p>
+    </div>
+  </aside>
+
+  <!-- Mobile Top-Bar (< 768px) : ersetzt die linke Leiste -->
+  <header class="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-line bg-white/90 px-4 backdrop-blur-md md:hidden">
+    <a href="#home" class="flex items-baseline gap-1 text-lg font-black tracking-tightest" data-target="#home">
+      WD<span class="h-1.5 w-1.5 rounded-full bg-ink"></span>
+    </a>
+    <button type="button" class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em]" data-drawer-open="" aria-label="Men++ +Âffnen" aria-expanded="false" aria-controls="nav-drawer">
+      Men++
+      <span class="rail-menu__icon" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </header>
+
+  <!-- ============================================================
+       2 -À HALF-SCREEN OVERLAY DRAWER
+           50vw ab 768px, 100vw auf Mobile.
+           Backdrop: bg-black/50 + Backdrop-Blur.
+       ============================================================ -->
+  <div id="drawer-backdrop" class="drawer-backdrop" data-drawer-close="" style="opacity: 0;"></div>
+
+  <div id="nav-drawer" class="drawer fixed left-0 top-0 z-50 flex h-screen flex-col justify-between bg-white/85 backdrop-blur-2xl" role="dialog" aria-modal="true" aria-label="Hauptmen++" aria-hidden="true" style="translate: none; rotate: none; scale: none; transform: translate(-100%, 0%) translate3d(-756px, 0px, 0px);">
+
+    <div class="flex items-center justify-between border-b border-line px-6 py-5 md:px-10">
+      <span class="font-mono text-[11px] uppercase tracking-[0.24em] text-slate">Navigation ÔÇö Webdunk</span>
+      <button type="button" class="drawer-close" data-drawer-close="" aria-label="Men++ schlie+ƒen">
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-6 py-6 md:px-10 md:py-8" aria-label="Overlay-Navigation">
+      <ul id="drawer-nav" class="divide-y divide-line">
+        <li><a href="#home" class="drawer-link is-active" data-target="#home" aria-current="true" style=""><span class="drawer-link__num">01</span><span>Home</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#klicklotse" class="drawer-link" data-target="#klicklotse" style=""><span class="drawer-link__num">02</span><span>Klicklotse</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#wp-renting" class="drawer-link" data-target="#wp-renting" style=""><span class="drawer-link__num">03</span><span>WP Renting</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#textil" class="drawer-link" data-target="#textil" style=""><span class="drawer-link__num">04</span><span>Textil Druckerei</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#showcase" class="drawer-link" data-target="#showcase" style=""><span class="drawer-link__num">05</span><span>Showcase</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#specs" class="drawer-link" data-target="#specs" style=""><span class="drawer-link__num">06</span><span>Print Specs</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#about" class="drawer-link" data-target="#about" style=""><span class="drawer-link__num">07</span><span>About</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#services" class="drawer-link" data-target="#services" style=""><span class="drawer-link__num">08</span><span>Services</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+        <li><a href="#contact" class="drawer-link" data-target="#contact" style=""><span class="drawer-link__num">09</span><span>Contact</span><svg class="drawer-link__arrow h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></li>
+      </ul>
+      <p class="mt-8 max-w-sm text-sm leading-relaxed text-slate">
+        Webdunk ist die Muttergesellschaft hinter Klicklotse, dem WordPress-Mietmodell f++r Schulen,
+        und einer eigenen Textil Druckerei.
+      </p>
+    </nav>
+
+    <div class="flex flex-col gap-5 border-t border-line px-6 py-6 md:flex-row md:items-end md:justify-between md:px-10">
+      <div class="space-y-1">
+        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-slate">Webdunk HQ</p>
+        <a href="mailto:hallo@webdunk.de" class="block text-lg font-medium underline-offset-4 hover:underline">hallo@webdunk.de</a>
+        <a href="tel:+4922100000000" class="block text-sm text-slate underline-offset-4 hover:underline">+49 221 000 000 0</a>
+      </div>
+      <div class="flex gap-3">
+        <a href="#showcase" class="btn btn--dark" data-target="#showcase">Showcase</a>
+        <a href="#contact" class="btn btn--ghost-dark" data-target="#contact">Kontakt</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN ÔÇö die Kern-Sektionen sind Full-Screen-Takeovers (100vh).
+       Desktop: per GSAP gepinnt & gescrubbt | Mobile: normaler Scroll.
+       ============================================================ -->
+  <main class="with-rail w-full">
+
+    <!-- ==========================================================
+         01 -À HERO
+         ========================================================== -->
+    <section id="home" class="screen screen--dark relative isolate overflow-hidden" data-section="" data-section-name="Home">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+
+      <div class="screen__inner relative z-10 px-6 pb-20 pt-28 md:px-14 md:pb-14 md:pt-20 xl:px-24">
+        <p class="eyebrow eyebrow--light" data-hero="">
+          <span class="eyebrow__dot"></span> Webdunk -À Digitale Manufaktur
+        </p>
+
+        <h1 class="hero-title mt-6" data-split="chars"><span class="split-line"><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate3d(0px, 112.269px, 0px);">W</span><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate(0px, 112.269px);">E</span><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate(0px, 112.269px);">B</span><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate(0px, 112.269px);">D</span><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate(0px, 112.269px);">U</span><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate(0px, 112.269px);">N</span><span class="split-char" style="translate: none; rotate: none; scale: none; transform: translate(0px, 112.269px);">K</span></span></h1>
+
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/60 md:text-xl" data-hero="">
+          WordPress Vermietung, Schul-Websites mit <strong class="font-medium text-white">Klicklotse</strong> und
+          Veredelung von Textilien ÔÇö planbar im Monatsabo, aus einer Hand.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3" data-hero="">
+          <a href="#showcase" class="btn btn--light" data-target="#showcase">
+            Showcase ansehen
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+          <button type="button" class="btn btn--outline-light" data-drawer-open="" aria-expanded="false">
+            Men++ +Âffnen
+            <span class="rail-menu__icon" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+
+        <ul class="mt-10 flex flex-wrap gap-2" data-hero="">
+          <li class="chip chip--dark">WordPress Vermietung</li>
+          <li class="chip chip--dark">Klicklotse f++r Schulen</li>
+          <li class="chip chip--dark">Textil Druckerei</li>
+          <li class="chip chip--dark">Showcase Portal</li>
+        </ul>
+
+        <div class="mt-12 grid grid-cols-2 gap-6 border-t border-white/10 pt-6 md:grid-cols-4" data-hero="">
+          <div>
+            <p class="meta-label">Standort</p>
+            <p class="meta-value">K+Âln, Deutschland</p>
+          </div>
+          <div>
+            <p class="meta-label">Erreichbar</p>
+            <p class="meta-value">Mo ÔÇô Fr -À 09 ÔÇô 18 Uhr</p>
+          </div>
+          <div>
+            <p class="meta-label">Projekte live</p>
+            <p class="meta-value"><span data-counter="340" data-counter-suffix="+">0+</span></p>
+          </div>
+          <div>
+            <p class="meta-label">Schul-Websites</p>
+            <p class="meta-value"><span data-counter="120" data-counter-suffix="+">0+</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true" style="opacity: 0;">
+        <span class="font-mono text-[10px] uppercase tracking-[0.28em] text-white/40">Scrollen</span>
+        <span class="scroll-cue__line"></span>
+      </div>
+    </section>
+
+    <!-- Marquee-Banner: +£bergang Hero ÔåÆ Klicklotse -->
+    <div class="marquee marquee--dark" data-marquee="" aria-hidden="true">
+      <div class="marquee__track" style="translate: none; rotate: none; scale: none; transform: translate(-0.3633%, 0%) translate3d(0px, 0px, 0px);">
+        <div class="marquee__group">
+          <span class="marquee__item">WordPress Vermietung</span>
+          <span class="marquee__item">Klicklotse Schul-Websites</span>
+          <span class="marquee__item">Textil Druckerei</span>
+          <span class="marquee__item">Managed Hosting &amp; Wartung</span>
+        </div>
+        <div class="marquee__group">
+          <span class="marquee__item">WordPress Vermietung</span>
+          <span class="marquee__item">Klicklotse Schul-Websites</span>
+          <span class="marquee__item">Textil Druckerei</span>
+          <span class="marquee__item">Managed Hosting &amp; Wartung</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         02 -À KLICKLOTSE ÔÇö WordPress Vermietung f++r Schulen
+         ========================================================== -->
+    <section id="klicklotse" class="screen relative overflow-hidden" data-section="" data-pin-section="" data-section-name="Klicklotse">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">02</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
+
+          <!-- Textspalte -->
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> 02 -À WordPress Vermietung</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Klicklotse</span></span></h2>
+            <p class="section-sub mt-6 text-slate" data-pin="lead">
+              Schul-Websites im Abo: fertige WordPress-Templates, redaktionell pflegbar ohne IT-Kenntnisse ÔÇö
+              auf Wunsch in 48 Stunden online.
+            </p>
+
+            <ul class="mt-10 space-y-5">
+              <li class="flex gap-4" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+                <span class="font-mono text-[10px] tracking-[0.2em] text-slate pt-1">01</span>
+                <div>
+                  <p class="font-medium">Fertige Schul-Templates</p>
+                  <p class="mt-1 text-sm leading-relaxed text-slate">Grundschule, Gymnasium oder Gesamtschule ÔÇö der Aufbau passt zur jeweiligen Schulform.</p>
+                </div>
+              </li>
+              <li class="flex gap-4" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+                <span class="font-mono text-[10px] tracking-[0.2em] text-slate pt-1">02</span>
+                <div>
+                  <p class="font-medium">Redaktion ohne IT-Wissen</p>
+                  <p class="mt-1 text-sm leading-relaxed text-slate">Termine, Elternbriefe und Klassenfotos pflegt das Sekretariat selbst ÔÇö ohne Schulungswochen.</p>
+                </div>
+              </li>
+              <li class="flex gap-4" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+                <span class="font-mono text-[10px] tracking-[0.2em] text-slate pt-1">03</span>
+                <div>
+                  <p class="font-medium">DSGVO-Hosting in Deutschland</p>
+                  <p class="mt-1 text-sm leading-relaxed text-slate">Server in Frankfurt, Auftragsverarbeitung inklusive, t+ñgliche Backups.</p>
+                </div>
+              </li>
+              <li class="flex gap-4" data-reveal="" data-reveal-delay="0.15" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+                <span class="font-mono text-[10px] tracking-[0.2em] text-slate pt-1">04</span>
+                <div>
+                  <p class="font-medium">Monatlich k++ndbar</p>
+                  <p class="mt-1 text-sm leading-relaxed text-slate">Kein Investitionsstau im Schultr+ñger-Budget: eine planbare Monatsmiete statt Einmalzahlung.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Interaktive Demo-Vorschau -->
+          <div data-pin="media">
+            <div class="space-y-3">
+              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate">Demo ausw+ñhlen</p>
+              <button type="button" class="demo-tab is-active" data-demo="grundschule">
+                <span class="demo-tab__name">Grundschule</span>
+                <span class="demo-tab__meta">Klassen 1 ÔÇô 4</span>
+                <span class="demo-tab__swatch" style="background:#1F6F5C" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="demo-tab" data-demo="gymnasium">
+                <span class="demo-tab__name">Gymnasium</span>
+                <span class="demo-tab__meta">Sek I + II</span>
+                <span class="demo-tab__swatch" style="background:#1E3A8A" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="demo-tab" data-demo="gesamtschule">
+                <span class="demo-tab__name">Gesamtschule</span>
+                <span class="demo-tab__meta">Jahrg+ñnge 5 ÔÇô 13</span>
+                <span class="demo-tab__swatch" style="background:#B45309" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="frame mt-6">
+              <div class="frame__bar" aria-hidden="true">
+                <div class="frame__dots"><span></span><span></span><span></span></div>
+                <span class="frame__url" id="demo-url">grundschule-sonnenblume.klicklotse.de</span>
+              </div>
+
+              <div class="frame__screen" id="demo-screen" aria-hidden="true" style="--accent: #1F6F5C;">
+                <div class="frame__glow"></div>
+                <div class="frame__nav">
+                  <span class="frame__brand"><span></span><b id="demo-brand">Grundschule Sonnenblume</b></span>
+                  <div class="frame__links" id="demo-links" style="translate: none; rotate: none; scale: none; opacity: 0.51; transform: translate3d(0px, 6.8602px, 0px);"><span>Startseite</span><span>Unsere Schule</span><span>Klassen</span><span>Termine</span></div>
+                </div>
+                <div class="frame__body">
+                  <p class="frame__headline" id="demo-headline" style="translate: none; rotate: none; scale: none; opacity: 0.8357; transform: translate3d(0px, 2.3003px, 0px);">Willkommen an der Grundschule Sonnenblume</p>
+                  <p class="frame__sub" id="demo-sub" style="translate: none; rotate: none; scale: none; opacity: 0.7055; transform: translate3d(0px, 4.123px, 0px);">Gemeinsam lernen, entdecken und wachsen ÔÇö alle Infos f++r Eltern, Kinder und Kollegium.</p>
+                  <span class="frame__cta" id="demo-cta">Elternbriefe ansehen</span>
+                  <div class="frame__cards" id="demo-cards" style="translate: none; rotate: none; scale: none; opacity: 0.2303; transform: translate3d(0px, 10.7763px, 0px);"><div class="frame__card"><b>Aktuelles</b><div><i></i><i></i></div></div><div class="frame__card"><b>Ferienplan</b><div><i></i><i></i></div></div><div class="frame__card"><b>Mensa</b><div><i></i><i></i></div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+              <a id="demo-link" href="https://grundschule-sonnenblume.klicklotse.de" target="_blank" rel="noopener" class="btn btn--dark">
+                Live-Demo +Âffnen
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                  <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </a>
+              <p class="max-w-xs text-xs leading-relaxed text-slate">
+                Interaktive Vorschau: Klicken Sie links, um zwischen den Klicklotse-Vorlagen f++r Schulformen zu wechseln.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kennzahlen -->
+        <div class="mt-14 grid gap-8 border-t border-line pt-8 sm:grid-cols-3">
+          <div data-pin="card">
+            <p class="meta-label">Schulprojekte</p>
+            <p class="text-3xl font-bold tracking-tight"><span data-counter="120" data-counter-suffix="+">0+</span></p>
+            <p class="mt-1 text-xs text-slate">ausgeliefert seit 2018</p>
+          </div>
+          <div data-pin="card">
+            <p class="meta-label">Setup-Zeit</p>
+            <p class="text-3xl font-bold tracking-tight"><span data-counter="48">0</span> h</p>
+            <p class="mt-1 text-xs text-slate">vom Auftrag bis zur Online-Schaltung</p>
+          </div>
+          <div data-pin="card">
+            <p class="meta-label">Verf++gbarkeit</p>
+            <p class="text-3xl font-bold tracking-tight"><span data-counter="99" data-counter-decimals="1">0,0</span> %</p>
+            <p class="mt-1 text-xs text-slate">gemessen ++ber die letzten 12 Monate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         03 -À WP RENTING ÔÇö WordPress im Mietmodell
+         ========================================================== -->
+    <section id="wp-renting" class="screen screen--mist relative overflow-hidden" data-section="" data-pin-section="" data-section-name="WP Renting">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">03</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16">
+
+          <!-- Text- und Preisspalte -->
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> 03 -À Mietmodell</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">WP</span></span> <span class="split-word"><span class="split-inner">Renting</span></span></h2>
+            <p class="section-sub mt-6 text-slate" data-pin="lead">
+              WordPress mieten statt kaufen: Website, Hosting, Updates und Sicherheit zum festen Monatspreis ÔÇö
+              ohne Projektbudget, ohne Wartungsvertrag im Kleingedruckten.
+            </p>
+
+            <div class="panel mt-10 p-6 md:p-8" data-pin="media">
+              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate">Startpreis</p>
+              <p class="mt-2 flex items-end gap-2">
+                <span class="text-5xl font-bold tracking-tight">79 Ôé¼</span>
+                <span class="pb-2 text-sm text-slate">/ Monat, netto</span>
+              </p>
+              <ul class="mt-6 space-y-3 text-sm">
+                <li class="flex items-start gap-3">
+                  <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 flex-none" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <span>Hosting, Domains und SSL inklusive</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 flex-none" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <span>CMS-, Plugin- und Sicherheitsupdates laufend</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 flex-none" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <span>Monatlich k++ndbar, keine Mindestlaufzeit</span>
+                </li>
+              </ul>
+              <a href="#contact" class="btn btn--dark mt-6 w-full justify-center" data-target="#contact">
+                Mietmodell anfragen
+              </a>
+            </div>
+          </div>
+
+          <!-- Rechte Spalte: das Mietmodell in vier Punkten
+               (kein data-reveal: die Takeover-Intro-Animation in initPinnedSection
+                ++bernimmt Einblenden und Staffelung dieser Karten) -->
+          <div class="grid gap-4 sm:grid-cols-2">
+            <article class="benefit" data-pin="card">
+              <p class="benefit__idx">01</p>
+              <h3 class="benefit__title">Hosting &amp; Domain</h3>
+              <p class="benefit__text">Server in Frankfurt, SSL-Zertifikat und Mailpostf+ñcher sind im Mietpreis enthalten.</p>
+            </article>
+            <article class="benefit" data-pin="card">
+              <p class="benefit__idx">02</p>
+              <h3 class="benefit__title">Updates &amp; Sicherheit</h3>
+              <p class="benefit__text">WordPress-Core, Plugins und Themes pflegen wir laufend ÔÇö inklusive Monitoring und Backups.</p>
+            </article>
+            <article class="benefit" data-pin="card">
+              <p class="benefit__idx">03</p>
+              <h3 class="benefit__title">Redaktion &amp; Schulung</h3>
+              <p class="benefit__text">Inhalte pflegen wir auf Wunsch mit oder schulen Ihr Team in zwei Online-Sessions.</p>
+            </article>
+            <article class="benefit" data-pin="card">
+              <p class="benefit__idx">04</p>
+              <h3 class="benefit__title">Kein Investitionsstau</h3>
+              <p class="benefit__text">Monatlich k++ndbar, keine Einmalzahlung, keine versteckten Wartungskosten.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         04 -À TEXTIL DRUCKEREI ÔÇö T-Shirts, Hoodies, Workwear
+         ========================================================== -->
+    <section id="textil" class="screen screen--dark relative overflow-hidden" data-section="" data-pin-section="" data-section-name="Textil Druckerei">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">04</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
+
+          <!-- Textspalte -->
+          <div>
+            <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> 04 -À Textil Druckerei</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Textil</span></span> <span class="split-word"><span class="split-inner">Druck</span></span></h2>
+            <p class="section-sub mt-6 text-white/60" data-pin="lead">
+              T-Shirts, Hoodies, Polos und Workwear ÔÇö bedruckt oder bestickt in der eigenen Werkstatt,
+              mit Muster, Termin und Rechnung aus K+Âln.
+            </p>
+
+            <dl class="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Verfahren</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-white/70">Siebdruck, DTF-Transfer, Flock und Stickerei ÔÇö passend zu Motiv und St++ckzahl.</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Mindestauflage</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-white/70">Ab 10 St++ck pro Motiv im Siebdruck, ab 1 St++ck im DTF-Transfer.</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Produktionszeit</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-white/70">5 Werktage nach Druckfreigabe ÔÇö Express auf 48 Stunden m+Âglich.</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Muster</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-white/70">Ein kostenloses Muster vor Serienstart, inklusive Versand.</dd>
+              </div>
+            </dl>
+
+            <div class="mt-10 flex flex-wrap gap-3" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <a href="#contact" class="btn btn--light" data-target="#contact">Angebot anfordern</a>
+              <a href="#specs" class="btn btn--outline-light" data-target="#specs">Print Specs ansehen</a>
+            </div>
+          </div>
+
+          <!-- Visual: T-Shirt mit Druckfl+ñche und Materialien -->
+          <div data-pin="media">
+            <div class="tee mx-auto max-w-sm">
+              <svg viewBox="0 0 420 420" class="w-full" role="img" aria-label="T-Shirt mit markierter Druckfl+ñche">
+                <path class="tee__body" d="M140 40 L60 84 L90 160 L134 140 L134 364 L286 364 L286 140 L330 160 L360 84 L280 40 L246 70 L174 70 Z"></path>
+                <rect class="tee__print-area" x="155" y="168" width="110" height="142" rx="6"></rect>
+                <text class="tee__logo" x="210" y="228" text-anchor="middle">WEBDUNK</text>
+                <text class="tee__logo-sub" x="210" y="248" text-anchor="middle">SIEBDRUCK -À K+ûLN</text>
+              </svg>
+            </div>
+
+            <div class="mt-6 grid gap-4 sm:grid-cols-3">
+              <div class="swatch swatch--cotton"><span class="swatch__label">Bio-Baumwolle</span></div>
+              <div class="swatch swatch--fleece"><span class="swatch__label">Fleece 280g</span></div>
+              <div class="swatch swatch--workwear"><span class="swatch__label">Workwear</span></div>
+            </div>
+
+            <ul class="mt-5 flex flex-wrap gap-2" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <li class="chip chip--dark">Ab 10 St++ck</li>
+              <li class="chip chip--dark">5 Werktage</li>
+              <li class="chip chip--dark">Muster inklusive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ==========================================================
+         05 -À SHOWCASE ÔÇö Projekte, nach Bereich filterbar
+         ========================================================== -->
+    <section id="showcase" class="screen screen--ash relative overflow-hidden" data-section="" data-section-name="Showcase">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">05</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-2xl">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> 05 -À Showcase</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Showcase</span></span></h2>
+            <p class="section-sub mt-6 text-slate" data-pin="lead">
+              Ausgew+ñhlte Projekte aus Schul-Websites, WordPress-Relaunches und Textil-Serien ÔÇö
+              direkt nach Bereich filterbar.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Projekte filtern">
+            <button type="button" class="chip chip--filter is-active" data-filter="all">Alle</button>
+            <button type="button" class="chip chip--filter" data-filter="schule">Schulen</button>
+            <button type="button" class="chip chip--filter" data-filter="wordpress">WordPress</button>
+            <button type="button" class="chip chip--filter" data-filter="textil">Textil</button>
+          </div>
+        </div>
+
+        <div id="showcase-grid" class="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="schule" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Schule -À Klicklotse</p>
+            <div>
+              <h3 class="work-card__title">Grundschule Sonnenblume</h3>
+              <p class="work-card__url mt-2">grundschule-sonnenblume.klicklotse.de</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="schule" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Schule -À Klicklotse</p>
+            <div>
+              <h3 class="work-card__title">Gymnasium Nord</h3>
+              <p class="work-card__url mt-2">gymnasium-nord.klicklotse.de</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="schule" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Schule -À Klicklotse</p>
+            <div>
+              <h3 class="work-card__title">Gesamtschule S++d</h3>
+              <p class="work-card__url mt-2">gesamtschule-sued.klicklotse.de</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="wordpress" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">WordPress -À Relaunch</p>
+            <div>
+              <h3 class="work-card__title">Hof Mertens Landtechnik</h3>
+              <p class="work-card__url mt-2">hof-mertens.de</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="wordpress" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">WordPress -À Mietmodell</p>
+            <div>
+              <h3 class="work-card__title">Kanzlei Brockmann</h3>
+              <p class="work-card__url mt-2">kanzlei-brockmann.de</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="textil" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Textil -À Trikotsatz</p>
+            <div>
+              <h3 class="work-card__title">TV K+Âln-S++d</h3>
+              <p class="work-card__url mt-2">240 Trikots -À Siebdruck 3-farbig</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="textil" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Textil -À Workwear</p>
+            <div>
+              <h3 class="work-card__title">B+ñckerei Ulmen</h3>
+              <p class="work-card__url mt-2">64 Sch++rzen -À Stickerei</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="textil" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Textil -À Merchandise</p>
+            <div>
+              <h3 class="work-card__title">Sommerfest am Rhein</h3>
+              <p class="work-card__url mt-2">500 T-Shirts -À DTF-Transfer</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+
+          <a class="work-card" href="#contact" data-target="#contact" data-cat="schule" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <p class="work-card__meta">Schule -À Klicklotse + Textil</p>
+            <div>
+              <h3 class="work-card__title">Berufskolleg Ehrenfeld</h3>
+              <p class="work-card__url mt-2">berufskolleg-ehrenfeld.klicklotse.de</p>
+            </div>
+            <span class="work-card__arrow self-end font-mono text-sm" aria-hidden="true">Ôåù</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- ==========================================================
+         06 -À PRINT SPECS ÔÇö technische Vorgaben f++r Druckdaten
+         ========================================================== -->
+    <section id="specs" class="screen screen--mist relative overflow-hidden" data-section="" data-section-name="Print Specs">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">06</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-2xl">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> 06 -À Print Specs</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Print</span></span> <span class="split-word"><span class="split-inner">Specs</span></span></h2>
+            <p class="section-sub mt-6 text-slate" data-pin="lead">
+              Alle technischen Vorgaben f++r Ihre Druckdaten ÔÇö damit am Ende exakt das auf dem Textil steht,
+              was im Design entworfen wurde.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--ghost-dark" data-target="#contact">Druckdaten pr++fen lassen</a>
+        </div>
+
+        <div class="mt-12 grid gap-x-14 gap-y-10 lg:grid-cols-2">
+          <dl class="border-b border-line">
+            <div class="spec-row" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Siebdruck</dt>
+              <dd>1 ÔÇô 6 Sonderfarben im Vollton nach HKS oder Pantone. Ab 10 St++ck pro Motiv wirtschaftlich.</dd>
+            </div>
+            <div class="spec-row" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>DTF-Transfer</dt>
+              <dd>Fotorealistische Motive und Verl+ñufe, ab 1 St++ck m+Âglich ÔÇö ideal f++r Kleinserien und Nachbestellungen.</dd>
+            </div>
+            <div class="spec-row" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Stickerei</dt>
+              <dd>Bis 12 Farben im Faden, besonders langlebig auf Workwear, Caps und Softshell-Jacken.</dd>
+            </div>
+            <div class="spec-row" data-reveal="" data-reveal-delay="0.15" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Flock &amp; Flex</dt>
+              <dd>Samtige oder gl+ñnzende Folien f++r Namen, Nummern und sportliche Trikots+ñtze.</dd>
+            </div>
+          </dl>
+
+          <dl class="border-b border-line">
+            <div class="spec-row" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Maximale Druckfl+ñche</dt>
+              <dd>Bis A3 (30 +ù 40 cm) im Siebdruck auf dem R++cken, 30 +ù 30 cm auf der Brust.</dd>
+            </div>
+            <div class="spec-row" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Aufl+Âsung &amp; Farbmodus</dt>
+              <dd>Mindestens 300 dpi bei Endgr+Â+ƒe, CMYK. Sonderfarben bitte als separate Volltonkan+ñle anlegen.</dd>
+            </div>
+            <div class="spec-row" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Dateiformate</dt>
+              <dd>PDF/X-4, AI oder EPS mit eingebetteten Schriften; alternativ PNG oder TIFF ab 300 dpi.</dd>
+            </div>
+            <div class="spec-row" data-reveal="" data-reveal-delay="0.15" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <dt>Produktionszeit &amp; Versand</dt>
+              <dd>5 Werktage nach Druckfreigabe, Express in 48 Stunden. Versand klimaneutral ab K+Âln.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <p class="mt-10 max-w-3xl text-sm leading-relaxed text-slate" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+          Unsicher bei der Aufbereitung? Schicken Sie uns Ihre Datei als Entwurf ÔÇö wir pr++fen Aufl+Âsung,
+          Farbraum und Platzierung und schicken einen Korrekturabzug zur++ck.
+        </p>
+      </div>
+    </section>
+    <!-- ==========================================================
+         07 -À ABOUT ÔÇö das Unternehmen hinter Klicklotse
+         ========================================================== -->
+    <section id="about" class="screen screen--dark relative overflow-hidden" data-section="" data-section-name="About">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">07</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+
+          <div>
+            <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> 07 -À About</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Webdunk</span></span></h2>
+            <p class="section-sub mt-6 text-white/60" data-pin="lead">
+              Die Muttergesellschaft hinter Klicklotse ÔÇö mit eigener Textil Druckerei in K+Âln.
+              Digitale Produkte und physische Veredelung unter einem Dach.
+            </p>
+            <p class="mt-6 max-w-2xl text-sm leading-relaxed text-white/55">
+              Seit 2015 bauen wir Websites, die Schulen, Vereine und Betriebe selbst pflegen k+Ânnen.
+              Aus dieser Arbeit ist Klicklotse entstanden: ein WordPress-Mietmodell, das Budgets schont
+              und technischen Betrieb auslagert. Weil viele Kunden danach auch Kleidung brauchten,
+              kam 2019 die eigene Druckerei dazu.
+            </p>
+
+            <div class="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-6">
+              <div>
+                <p class="meta-label">Gegr++ndet</p>
+                <p class="meta-value">2015 in K+Âln</p>
+              </div>
+              <div>
+                <p class="meta-label">Team</p>
+                <p class="meta-value"><span data-counter="14">0</span> Menschen</p>
+              </div>
+              <div>
+                <p class="meta-label">Klicklotse-Schulen</p>
+                <p class="meta-value"><span data-counter="38" data-counter-suffix="+">0+</span></p>
+              </div>
+              <div>
+                <p class="meta-label">Veredelte Textilien</p>
+                <p class="meta-value"><span data-counter="260000" data-counter-suffix="+">0+</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <article class="benefit" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <p class="benefit__idx">01</p>
+              <h3 class="benefit__title">Eine Ansprechperson</h3>
+              <p class="benefit__text">Vom ersten Anruf bis zum Livegang begleitet Sie dieselbe Person ÔÇö keine Ticket-Warteschlangen.</p>
+            </article>
+            <article class="benefit" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <p class="benefit__idx">02</p>
+              <h3 class="benefit__title">Eigene Druckerei</h3>
+              <p class="benefit__text">Siebdruck, DTF und Stickerei entstehen im Haus ÔÇö kurze Wege, echte Muster, faire Preise.</p>
+            </article>
+            <article class="benefit" data-reveal="" data-reveal-delay="0.1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <p class="benefit__idx">03</p>
+              <h3 class="benefit__title">Planbare Kosten</h3>
+              <p class="benefit__text">Miete statt Kauf: Websites und Betrieb kosten monatlich kalkulierbar, ohne Investitionsstau.</p>
+            </article>
+            <article class="benefit" data-reveal="" data-reveal-delay="0.15" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <p class="benefit__idx">04</p>
+              <h3 class="benefit__title">Standort K+Âln</h3>
+              <p class="benefit__text">Hosting in Deutschland, Entwicklungs- und Druckteam in Ehrenfeld, Support auf Deutsch.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ==========================================================
+         08 -À SERVICES ÔÇö Leistungen im +£berblick
+         ========================================================== -->
+    <section id="services" class="screen screen--ash relative overflow-hidden" data-section="" data-section-name="Services">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">08</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-2xl">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> 08 -À Services</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Services</span></span></h2>
+            <p class="section-sub mt-6 text-slate" data-pin="lead">
+              Vier Leistungen, einzeln oder als Paket buchbar ÔÇö von der Schul-Website ++ber den
+              WordPress-Betrieb bis zum bedruckten Trikotsatz.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--dark" data-target="#contact">Projekt anfragen</a>
+        </div>
+
+        <div class="mt-12 grid gap-x-12 border-b border-line lg:grid-cols-2">
+          <article class="service-card" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <div>
+              <p class="service-card__num">01</p>
+              <h3 class="service-card__title">Klicklotse f++r Schulen</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate">
+                Schul-Websites als Komplettpaket: Vorlage, Einrichtung, Inhalte und Betrieb im Monatsabo.
+              </p>
+            </div>
+            <ul class="service-list mt-6">
+              <li>Schulform-Vorlage mit passender Redaktionsstruktur</li>
+              <li>+£bernahme bestehender Inhalte und Bilder</li>
+              <li>Online-Schaltung in 48 Stunden</li>
+              <li>DSGVO-konformes Hosting in Frankfurt</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <div>
+              <p class="service-card__num">02</p>
+              <h3 class="service-card__title">WordPress Vermietung</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate">
+                WordPress als Mietmodell f++r Betriebe, Vereine und Kanzleien ÔÇö inklusive Wartung und Sicherheit.
+              </p>
+            </div>
+            <ul class="service-list mt-6">
+              <li>Theme-Entwicklung oder Relaunch im Bestand</li>
+              <li>Updates, Backups und Monitoring laufend</li>
+              <li>Performance- und SEO-Grundoptimierung</li>
+              <li>Monatlich k++ndbar, kein Projektbudget n+Âtig</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <div>
+              <p class="service-card__num">03</p>
+              <h3 class="service-card__title">Textilveredelung</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate">
+                Druck und Stickerei f++r Teams, Vereine und Events ÔÇö vom Einzelst++ck bis zur Serie.
+              </p>
+            </div>
+            <ul class="service-list mt-6">
+              <li>Siebdruck, DTF-Transfer, Flock und Stickerei</li>
+              <li>Textilauswahl und Gr+Â+ƒentabellen inklusive</li>
+              <li>Muster vor Serienstart, Korrekturabzug</li>
+              <li>Lieferung an eine oder viele Adressen</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal="" data-reveal-delay="0.05" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+            <div>
+              <p class="service-card__num">04</p>
+              <h3 class="service-card__title">Beratung &amp; Digitalisierung</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate">
+                F++r Tr+ñger, Verb+ñnde und Gesch+ñftsf++hrungen: Struktur, Prozesse und Werkzeuge f++r digitale Abl+ñufe.
+              </p>
+            </div>
+            <ul class="service-list mt-6">
+              <li>Web-Audit mit Ma+ƒnahmenplan</li>
+              <li>Redaktionskonzept und Rollenrechte</li>
+              <li>Schulung f++r Redaktion und Verwaltung</li>
+              <li>Barrierefreiheit und rechtliche Pflichtangaben</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ==========================================================
+         09 -À CONTACT ÔÇö Anfrage und Kontaktdaten
+         ========================================================== -->
+    <section id="contact" class="screen screen--dark relative overflow-hidden" data-section="" data-section-name="Contact">
+      <span class="ghost" aria-hidden="true" data-pin="ghost">09</span>
+      <div class="screen__veil" aria-hidden="true"></div>
+
+      <div class="screen__inner px-6 md:px-14 xl:px-24">
+        <div class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+
+          <div>
+            <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> 09 -À Kontakt</p>
+            <h2 class="section-title mt-5" data-split="words" data-pin="title"><span class="split-word"><span class="split-inner" style="translate: none; rotate: none; scale: none; transform: translate(0px, 56.2719px);">Kontakt</span></span></h2>
+            <p class="section-sub mt-6 text-white/60" data-pin="lead">
+              Erz+ñhlen Sie uns kurz, worum es geht ÔÇö wir antworten innerhalb von 24 Stunden mit einem
+              konkreten Vorschlag oder einem Termin.
+            </p>
+
+            <dl class="mt-10 space-y-5">
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">E-Mail</dt>
+                <dd class="mt-1">
+                  <a class="text-lg font-medium underline-offset-4 hover:underline" href="mailto:hallo@webdunk.de">hallo@webdunk.de</a>
+                </dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Telefon</dt>
+                <dd class="mt-1 text-white/75">
+                  <a class="underline-offset-4 hover:underline" href="tel:+4922100000000">+49 221 000 000 0</a>
+                </dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Adresse</dt>
+                <dd class="mt-1 text-white/75">Hohe Stra+ƒe 12 -À 50667 K+Âln</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">Erreichbar</dt>
+                <dd class="mt-1 text-white/75">Montag ÔÇô Freitag -À 09 ÔÇô 18 Uhr</dd>
+              </div>
+            </dl>
+
+            <ul class="mt-8 flex flex-wrap gap-2" data-reveal="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 0;">
+              <li class="chip chip--dark">WordPress Vermietung</li>
+              <li class="chip chip--dark">Klicklotse</li>
+              <li class="chip chip--dark">Textildruck</li>
+            </ul>
+          </div>
+
+          <div class="panel panel--dark panel--pad" data-reveal="up" style="translate: none; rotate: none; scale: none; transform: translate(0px, 28px); opacity: 0;">
+            <form id="contact-form" class="grid gap-6" novalidate="">
+              <div class="grid gap-6 sm:grid-cols-2">
+                <div class="field" data-field="">
+                  <label class="field__label" for="cf-name">Name *</label>
+                  <input class="field__input" id="cf-name" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" required="">
+                  <p class="field__error" data-error=""></p>
+                </div>
+                <div class="field" data-field="">
+                  <label class="field__label" for="cf-email">E-Mail *</label>
+                  <input class="field__input" id="cf-email" name="email" type="email" autocomplete="email" placeholder="name@schule.de" required="">
+                  <p class="field__error" data-error=""></p>
+                </div>
+                <div class="field" data-field="">
+                  <label class="field__label" for="cf-org">Einrichtung / Firma</label>
+                  <input class="field__input" id="cf-org" name="organisation" type="text" placeholder="Optional">
+                  <p class="field__error" data-error=""></p>
+                </div>
+                <div class="field" data-field="">
+                  <label class="field__label" for="cf-topic">Thema</label>
+                  <select class="field__input" id="cf-topic" name="topic">
+                    <option value="klicklotse">Klicklotse Schul-Website</option>
+                    <option value="wp-renting">WordPress Mietmodell</option>
+                    <option value="textil">Textildruck / Stickerei</option>
+                    <option value="sonstiges">Sonstiges</option>
+                  </select>
+                  <p class="field__error" data-error=""></p>
+                </div>
+              </div>
+
+              <div class="field" data-field="">
+                <label class="field__label" for="cf-message">Nachricht *</label>
+                <textarea class="field__input" id="cf-message" name="message" rows="4" placeholder="St++ckzahl, Termin, Schulform oder Motividee ÔÇª" required=""></textarea>
+                <p class="field__error" data-error=""></p>
+              </div>
+
+              <div class="field" data-field="">
+                <label class="checkbox">
+                  <input class="field__input" type="checkbox" name="consent" required="">
+                  <span>
+                    Ich habe die Datenschutzerkl+ñrung im Footer gelesen und stimme der Verarbeitung
+                    meiner Angaben zur Kontaktaufnahme zu.
+                  </span>
+                </label>
+                <p class="field__error" data-error=""></p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-5">
+                <button type="submit" class="btn btn--light">
+                  Anfrage senden
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER -À Kontakt, Rechtliches (Impressum / Datenschutz)
+       ============================================================ -->
+  <footer class="with-rail relative overflow-hidden bg-ink text-white">
+    <div class="px-6 pb-10 pt-16 md:px-14 xl:px-24">
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)]">
+        <div>
+          <p class="footer-head">Webdunk -À Digitale Manufaktur</p>
+          <p class="mt-5 max-w-md text-2xl font-bold leading-tight tracking-tight">
+            Schul-Websites, WordPress-Mietmodelle und Textilveredelung ÔÇö aus einer Hand.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#contact" class="btn btn--light" data-target="#contact">Projekt anfragen</a>
+            <button type="button" class="btn btn--outline-light" data-drawer-open="" aria-expanded="false">
+              Men++ +Âffnen
+              <span class="rail-menu__icon" aria-hidden="true"><span></span><span></span></span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-head">Leistungen</p>
+          <ul class="mt-5 space-y-2">
+            <li><a class="footer-link" href="#klicklotse" data-target="#klicklotse">Klicklotse Schul-Websites</a></li>
+            <li><a class="footer-link" href="#wp-renting" data-target="#wp-renting">WP Renting</a></li>
+            <li><a class="footer-link" href="#textil" data-target="#textil">Textil Druckerei</a></li>
+            <li><a class="footer-link" href="#showcase" data-target="#showcase">Showcase</a></li>
+            <li><a class="footer-link" href="#services" data-target="#services">Services</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-head">Kontakt</p>
+          <ul class="mt-5 space-y-2">
+            <li><a class="footer-link" href="mailto:hallo@webdunk.de">hallo@webdunk.de</a></li>
+            <li><a class="footer-link" href="tel:+4922100000000">+49 221 000 000 0</a></li>
+            <li><span class="footer-link">Hohe Stra+ƒe 12 -À 50667 K+Âln</span></li>
+            <li><a class="footer-link" href="#about" data-target="#about">+£ber Webdunk</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Rechtliches als Accordion -->
+      <div class="mt-14">
+        <div class="acc" data-accordion="">
+          <button type="button" class="acc__head" aria-expanded="false">
+            <span class="acc__title">Impressum</span>
+            <span class="acc__icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc__panel" style="height: 0px;">
+            <div class="acc__inner">
+              <h4>Angaben gem+ñ+ƒ -º 5 TMG</h4>
+              <p>
+                Webdunk ÔÇö Digitale Manufaktur<br>
+                Hohe Stra+ƒe 12<br>
+                50667 K+Âln, Deutschland
+              </p>
+              <h4>Vertreten durch</h4>
+              <p>Inhaber: Max Mustermann (Platzhalter ÔÇö vor Go-Live ersetzen)</p>
+              <h4>Kontakt</h4>
+              <p>
+                Telefon: +49 221 000 000 0<br>
+                E-Mail: <a href="mailto:hallo@webdunk.de">hallo@webdunk.de</a>
+              </p>
+              <h4>Umsatzsteuer-ID</h4>
+              <p>Umsatzsteuer-Identifikationsnummer gem+ñ+ƒ -º 27a UStG: DE000000000</p>
+              <h4>Verantwortlich f++r den Inhalt nach -º 18 Abs. 2 MStV</h4>
+              <p>Max Mustermann, Anschrift wie oben</p>
+              <h4>Streitschlichtung</h4>
+              <p>
+                Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+                Verbraucherschlichtungsstelle teilzunehmen.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-accordion="">
+          <button type="button" class="acc__head" aria-expanded="false">
+            <span class="acc__title">Datenschutzerkl+ñrung</span>
+            <span class="acc__icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc__panel" style="height: 0px;">
+            <div class="acc__inner">
+              <h4>1. Verantwortlicher</h4>
+              <p>Webdunk, Hohe Stra+ƒe 12, 50667 K+Âln ÔÇö Kontakt siehe Impressum.</p>
+              <h4>2. Hosting</h4>
+              <p>
+                Diese Website wird bei einem Dienstleister mit Servern in Deutschland gehostet. Beim Aufruf
+                verarbeitet der Server technisch notwendige Zugriffsdaten (IP-Adresse, Zeitpunkt, abgerufene
+                Datei) zur Auslieferung und Sicherheit. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+              </p>
+              <h4>3. Kontaktformular &amp; E-Mail-Kontakt</h4>
+              <p>
+                +£bermitteln Sie uns eine Anfrage, verarbeiten wir Ihre Angaben zur Bearbeitung des Anliegens
+                (Art. 6 Abs. 1 lit. b bzw. f DSGVO). Eine Weitergabe an Dritte erfolgt nicht; die Daten werden
+                gel+Âscht, sobald der Zweck entf+ñllt und keine Aufbewahrungspflichten entgegenstehen.
+              </p>
+              <h4>4. Externe Inhalte &amp; Schriften</h4>
+              <p>
+                Schriftarten sowie die Animationsbibliothek werden derzeit ++ber externe Anbieter (Google Fonts,
+                jsDelivr) geladen. <strong>Hinweis vor Go-Live:</strong> F++r maximalen Datenschutz beide Quellen
+                lokal einbinden und die CDN-Einbindung entfernen.
+              </p>
+              <h4>5. Cookies &amp; Tracking</h4>
+              <p>
+                Diese Website setzt keine Analyse- oder Marketing-Cookies und kein Tracking ein.
+              </p>
+              <h4>6. Ihre Rechte</h4>
+              <p>
+                Sie haben das Recht auf Auskunft, Berichtigung, L+Âschung, Einschr+ñnkung der Verarbeitung,
+                Daten++bertragbarkeit und Widerspruch. Ohne Einwilligung erheben wir keine sensiblen Daten.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fu+ƒzeile -->
+      <div class="mt-12 flex flex-col gap-6 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <p class="font-mono text-[11px] tracking-[0.14em] text-white/45">
+          -® <span data-year="">2026</span> Webdunk -À Alle Rechte vorbehalten
+        </p>
+        <div class="flex flex-wrap items-center gap-6">
+          <a class="footer-link" href="#contact" data-target="#contact">Kontakt</a>
+          <a class="footer-link" href="mailto:hallo@webdunk.de">hallo@webdunk.de</a>
+          <button type="button" class="to-top" data-to-top="">
+            Nach oben
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger (CDN, deferred ÔåÆ Reihenfolge bleibt erhalten) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer=""></script>
+  <script src="assets/js/main.js" defer=""></script>
+
+
+
+
+
+
+
+
+
+
+<script src="_probe.js"></script>
+<pre id="PROBE">PROBE_START
+HTMLCLASS = scroll-smooth js cursor-visible is-ready
+ISREADY = true
+TYPEOF_GSAP = object
+TYPEOF_SCROLLTRIGGER = function
+H1_TEXT = WEBDUNK
+H1_CHAR_TRANSFORM = matrix(1, 0, 0, 1, 0, 112.269)
+H1_CHAR_IN_MASK = charTop=265 maskTop=153 maskBottom=255 charHeight=102
+TEXTIL_H2_TEXT = Textil Druck
+TEXTIL_INNER_TRANSFORM = matrix(1, 0, 0, 1, 0, 56.2719)
+FIRST_REVEAL_OPACITY = 0
+TRIGGER_LABEL = Men++ +Âffnen
+DRAWER_T0_TRANSFORM = matrix(1, 0, 0, 1, -756, 0)
+DRAWER_T0_RECT = {"x":-756,"y":0,"width":756,"height":488,"top":0,"right":0,"bottom":488,"left":-756}
+DRAWER_T0_ARIA = true
+DRAWER_OPEN_TRANSFORM = matrix(1, 0, 0, 1, -1512, 0)
+DRAWER_OPEN_RECT = {"x":-1512,"y":0,"width":756,"height":488,"top":0,"right":-756,"bottom":488,"left":-1512}
+DRAWER_OPEN_ARIA = false
+DRAWER_OPEN_LABEL = Men++ schlie+ƒen
+BACKDROP_HIDDEN_WHILE_OPEN = false
+BODY_OVERFLOW_WHILE_OPEN = hidden
+DRAWER_CLOSED_TRANSFORM = matrix(1, 0, 0, 1, -1512, 0)
+DRAWER_CLOSED_ARIA = true
+DRAWER_CLOSED_LABEL = Men++ +Âffnen
+BACKDROP_HIDDEN_WHILE_CLOSED = false
+BODY_OVERFLOW_WHILE_CLOSED = (leer)
+MARQUEE_TRANSFORM = matrix(1, 0, 0, 1, -7.9711, 0)
+PROBE_END</pre></body></html>

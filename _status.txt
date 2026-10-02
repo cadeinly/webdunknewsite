@@ -1,0 +1,4 @@
+﻿node21768=LAEUFT
+msedge=35
+diag_bytes=1447 last=19:35:01 now=19:35:02
+zeilen=86

@@ -1,0 +1,23 @@
+VIEWPORT=1256x716 DOC_clientW=1246 scrollbar=10 outerW=1280
+MQ_768=true MQ_1280=false
+RAILW=88px
+DOC_SCROLL_W=1246 vs clientW=1246
+HERO_PAD_L=56px PAD_R=56px
+HERO_FONT=188.4px LH=169.56px LS=-10.362px WS=normal
+HERO_RECT=l=144 r=1190 w=1046 t=127.1 clientW=1046 scrollW=1046 clientH=170
+CHAR_COUNT=7
+CHAR_BOXES=["W:144..337.5@127.1","E:337.5..442.6@127.1","B:442.6..558.1@127.1","D:558.1..683.9@127.1","U:683.9..809.5@127.1","N:809.5..944.1@127.1","K:944.1..1076.8@127.1"]
+HERO_LINES=["WEBDUNK"]
+HERO_LINE_W=[932.8]
+ONELINE_NEED=932.8 scrollW=933 AVAIL=1046 FITS=true RATIO=0.8918
+EM_FACTOR=4.9512
+HERO_TARGET_FS=211.3 = 16.82vw
+S0 "Klicklotse" font=90.432px clientW=479 scrollW=479 LINES=["Klicklotse"] LINE_W=[406.4]
+S1 "WP Renting" font=90.432px clientW=466 scrollW=466 LINES=["WP","Renting"] LINE_W=[146.5,317.5]
+S2 "Textil Druck" font=90.432px clientW=479 scrollW=479 LINES=["Textil","Druck"] LINE_W=[222.9,247.9]
+S3 "Showcase" font=90.432px clientW=570 scrollW=570 LINES=["Showcase"] LINE_W=[430.5]
+S4 "Print Specs" font=90.432px clientW=570 scrollW=570 LINES=["PrintSpecs"] LINE_W=[467.1]
+S5 "Webdunk" font=90.432px clientW=468 scrollW=468 LINES=["Webdunk"] LINE_W=[400.9]
+S6 "Services" font=90.432px clientW=570 scrollW=570 LINES=["Services"] LINE_W=[362.1]
+S7 "Kontakt" font=90.432px clientW=442 scrollW=442 LINES=["Kontakt"] LINE_W=[324.5]
+DIAG ready=complete gsap=true splitChars=7 innerW=1256x716 docScrollW=1651

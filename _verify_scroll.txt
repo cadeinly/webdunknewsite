@@ -1,0 +1,125 @@
+BOOT {"ready":"complete","gsap":true,"st":true,"secs":0,"doc":15627,"vp":"1416x808"}
+DOC height=15627 viewport=1440x900 spacers=9 sections=0
+  PIN home         start=     0 end=   687 laenge=687
+  PIN klicklotse   start=  1687 end=  2374 laenge=687
+  PIN wp-renting   start=  3397 end=  4084 laenge=687
+  PIN textil       start=  4988 end=  5675 laenge=687
+  PIN showcase     start=  6579 end=  7266 laenge=687
+  PIN specs        start=  8450 end=  9137 laenge=687
+  PIN about        start= 10157 end= 10844 laenge=687
+  PIN services     start= 11652 end= 12339 laenge=687
+  PIN contact      start= 13458 end= 14145 laenge=687
+
+--- SCROLL DURCHLAUF (step 150px) ---
+y=    0 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 30 | veil=
+y=  150 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 30 | veil=
+y=  300 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 30 | veil=
+y=  450 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 30 | veil=
+y=  600 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 30 | veil=
+y=  750 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 22 | veil=
+y=  900 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 22 | veil=
+y= 1050 | top=home       rgb(10, 10, 10)                | mid=home       rgb(10, 10, 10)                | content= 25 | veil=
+y= 1200 | top=home       rgb(10, 10, 10)                | mid=NONE       rgb(255, 255, 255)             | content= 29 | veil=
+y= 1350 | top=home       rgb(10, 10, 10)                | mid=klicklotse rgb(255, 255, 255)             | content= 34 | veil=
+y= 1500 | top=home       rgb(10, 10, 10)                | mid=klicklotse rgb(255, 255, 255)             | content= 40 | veil=
+y= 1650 | top=NONE       rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 45 | veil=
+y= 1800 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 45 | veil=
+y= 1950 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 45 | veil=
+y= 2100 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 45 | veil=
+y= 2250 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 45 | veil=
+y= 2400 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 22 | veil=
+y= 2550 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 22 | veil=
+y= 2700 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 23 | veil=
+y= 2850 | top=klicklotse rgb(255, 255, 255)             | mid=klicklotse rgb(255, 255, 255)             | content= 24 | veil=
+y= 3000 | top=klicklotse rgb(255, 255, 255)             | mid=wp-renting rgb(10, 10, 10)                | content= 31 | veil=
+y= 3150 | top=klicklotse rgb(255, 255, 255)             | mid=wp-renting rgb(10, 10, 10)                | content= 34 | veil=
+y= 3300 | top=klicklotse rgb(255, 255, 255)             | mid=wp-renting rgb(10, 10, 10)                | content= 42 | veil=
+y= 3450 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(10, 10, 10)                | content= 42 | veil=
+y= 3600 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(10, 10, 10)                | content= 42 | veil=
+y= 3750 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(10, 10, 10)                | content= 42 | veil=
+y= 3900 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(10, 10, 10)                | content= 42 | veil=
+y= 4050 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(10, 10, 10)                | content= 22 | veil=
+y= 4200 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(20, 20, 20)                | content= 22 | veil=
+y= 4350 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(20, 20, 20)                | content= 23 | veil=
+y= 4500 | top=wp-renting rgb(10, 10, 10)                | mid=wp-renting rgb(10, 10, 10)                | content= 26 | veil=
+y= 4650 | top=wp-renting rgb(20, 20, 20)                | mid=textil     rgb(255, 255, 255)             | content= 27 | veil=
+y= 4800 | top=wp-renting rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 34 | veil=
+y= 4950 | top=wp-renting rgb(10, 10, 10)                | mid=textil     rgb(255, 255, 255)             | content= 41 | veil=
+y= 5100 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 41 | veil=
+y= 5250 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 41 | veil=
+y= 5400 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 41 | veil=
+y= 5550 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 41 | veil=
+y= 5700 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 22 | veil=
+y= 5850 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 22 | veil=
+y= 6000 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 24 | veil=
+y= 6150 | top=textil     rgb(255, 255, 255)             | mid=textil     rgb(255, 255, 255)             | content= 29 | veil=
+y= 6300 | top=textil     rgb(255, 255, 255)             | mid=showcase   rgb(10, 10, 10)                | content= 38 | veil=
+y= 6450 | top=textil     rgb(255, 255, 255)             | mid=showcase   rgb(10, 10, 10)                | content= 41 | veil=
+y= 6600 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 47 | veil=
+y= 6750 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 47 | veil=
+y= 6900 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 47 | veil=
+y= 7050 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 47 | veil=
+y= 7200 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 47 | veil=
+y= 7350 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 22 | veil=
+y= 7500 | top=showcase   rgb(10, 10, 10)                | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 22 | veil=
+y= 7650 | top=showcase   rgba(255, 255, 255, 0.03)      | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 22 | veil=
+y= 7800 | top=showcase   rgba(255, 255, 255, 0.03)      | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 23 | veil=
+y= 7950 | top=showcase   rgba(255, 255, 255, 0.03)      | mid=showcase   rgba(255, 255, 255, 0.03)      | content= 25 | veil=
+y= 8100 | top=showcase   rgba(255, 255, 255, 0.03)      | mid=specs      rgb(255, 255, 255)             | content= 29 | veil=
+y= 8250 | top=showcase   rgba(255, 255, 255, 0.03)      | mid=specs      rgb(255, 255, 255)             | content= 33 | veil=
+y= 8400 | top=showcase   rgb(10, 10, 10)                | mid=specs      rgb(255, 255, 255)             | content= 39 | veil=
+y= 8550 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 41 | veil=
+y= 8700 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 41 | veil=
+y= 8850 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 41 | veil=
+y= 9000 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 41 | veil=
+y= 9150 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 22 | veil=
+y= 9300 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 22 | veil=
+y= 9450 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 22 | veil=
+y= 9600 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 30 | veil=
+y= 9750 | top=specs      rgb(255, 255, 255)             | mid=specs      rgb(255, 255, 255)             | content= 31 | veil=
+y= 9900 | top=specs      rgb(255, 255, 255)             | mid=about      rgb(10, 10, 10)                | content= 38 | veil=
+y=10050 | top=specs      rgb(255, 255, 255)             | mid=about      rgb(10, 10, 10)                | content= 46 | veil=
+y=10200 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 46 | veil=
+y=10350 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 46 | veil=
+y=10500 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 46 | veil=
+y=10650 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 46 | veil=
+y=10800 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 46 | veil=
+y=10950 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 23 | veil=
+y=11100 | top=about      rgb(10, 10, 10)                | mid=about      rgb(10, 10, 10)                | content= 25 | veil=
+y=11250 | top=about      rgb(10, 10, 10)                | mid=services   rgb(255, 255, 255)             | content= 25 | veil=
+y=11400 | top=about      rgb(10, 10, 10)                | mid=services   rgb(255, 255, 255)             | content= 31 | veil=
+y=11550 | top=about      rgb(10, 10, 10)                | mid=services   rgb(255, 255, 255)             | content= 39 | veil=
+y=11700 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 43 | veil=
+y=11850 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 43 | veil=
+y=12000 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 43 | veil=
+y=12150 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 43 | veil=
+y=12300 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 43 | veil=
+y=12450 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 22 | veil=
+y=12600 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 22 | veil=
+y=12750 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 23 | veil=
+y=12900 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 28 | veil=
+y=13050 | top=services   rgb(255, 255, 255)             | mid=services   rgb(255, 255, 255)             | content= 33 | veil=
+y=13200 | top=services   rgb(255, 255, 255)             | mid=contact    rgb(10, 10, 10)                | content= 39 | veil=
+y=13350 | top=services   rgb(255, 255, 255)             | mid=contact    rgb(10, 10, 10)                | content= 48 | veil=
+y=13500 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 48 | veil=
+y=13650 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 48 | veil=
+y=13800 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 48 | veil=
+y=13950 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 48 | veil=
+y=14100 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 48 | veil=
+y=14250 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 25 | veil=
+y=14400 | top=contact    rgb(10, 10, 10)                | mid=contact    rgb(10, 10, 10)                | content= 35 | veil=
+y=14550 | top=contact    rgb(10, 10, 10)                | mid=FOOTER     rgb(10, 10, 10)                | content= 36 | veil=
+y=14700 | top=contact    rgb(10, 10, 10)                | mid=FOOTER     rgb(10, 10, 10)                | content= 39 | veil=
+
+--- JS-FEHLER / WARNUNGEN ---
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js.
+warning Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js.
+
+--- BEFUNDE ---
+keine leeren Vollbild-Screens erkannt (content >= 3 ueberall)

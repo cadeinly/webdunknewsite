@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webdunk | Digital Solutions & Textil Druckerei</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom Infinite Marquee Animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 25s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-neutral-950 text-neutral-100 font-sans selection:bg-amber-500 selection:text-black overflow-x-hidden">
+
+  <!-- 1. FIXED LEFT SIDEBAR -->
+  <aside class="fixed left-0 top-0 h-screen w-16 md:w-20 bg-neutral-900 border-r border-neutral-800 z-50 flex flex-col justify-between items-center py-6">
+    <div class="font-bold text-xl tracking-tighter text-amber-500">WD</div>
+
+    <!-- Toggle Button -->
+    <button id="menu-toggle" aria-label="Toggle Menu" class="p-3 rounded-full hover:bg-neutral-800 transition-colors">
+      <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+    </button>
+
+    <div class="text-[10px] text-neutral-500 -rotate-90 whitespace-nowrap tracking-widest uppercase">WEBDUNK © 2026</div>
+  </aside>
+
+  <!-- 2. HALF-SCREEN OVERLAY MENU (50vw desktop drawer) -->
+  <div id="nav-drawer" class="fixed top-0 left-0 w-full md:w-[50vw] h-screen bg-neutral-900/95 backdrop-blur-xl border-r border-neutral-800 z-40 transition-transform duration-500 -translate-x-full flex flex-col justify-between p-8 md:p-16 pl-20 md:pl-28">
+    <div>
+      <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold">Navigation</span>
+      <nav class="mt-8 flex flex-col space-y-3">
+        <a href="#hero" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">01</span>Home</a>
+        <a href="#klicklotse" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">02</span>Klicklotse (Schulen)</a>
+        <a href="#wp-renting" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">03</span>WordPress Renting</a>
+        <a href="#textil" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">04</span>Textil Druckerei</a>
+        <a href="#showcase" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">05</span>Project Showcase</a>
+        <a href="#specs" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">06</span>Print Specs</a>
+        <a href="#about" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">07</span>About Webdunk</a>
+        <a href="#services" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">08</span>Services Overview</a>
+        <a href="#contact" class="nav-link text-xl md:text-2xl font-light hover:text-amber-400 transition-colors"><span class="text-xs font-mono text-neutral-500 mr-4">09</span>Contact & Legal</a>
+      </nav>
+    </div>
+
+    <div class="text-sm text-neutral-400 space-y-1">
+      <p class="text-neutral-200 font-medium">Webdunk HQ</p>
+      <p>info@webdunk.de</p>
+    </div>
+  </div>
+
+  <!-- 3. MAIN CONTENT CONTAINER -->
+  <main class="pl-16 md:pl-20 w-full">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="panel min-h-screen flex flex-col justify-center items-start px-8 md:px-20 relative border-b border-neutral-800">
+      <div class="max-w-4xl space-y-6">
+        <span class="px-3 py-1 text-xs rounded-full bg-neutral-800 text-amber-400 border border-neutral-700">Webdunk Ecosystem</span>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none">
+          WEBDUNK<span class="text-amber-500">.</span>
+        </h1>
+        <p class="text-lg md:text-2xl text-neutral-400 max-w-2xl font-light">
+          Managed WordPress solutions, specialized educational portals, and high-precision textile printing.
+        </p>
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a href="#klicklotse" class="px-6 py-3 rounded-lg bg-amber-500 text-black font-semibold hover:bg-amber-400 transition-colors">Explore Klicklotse</a>
+          <a href="#textil" class="px-6 py-3 rounded-lg border border-neutral-700 hover:bg-neutral-800 transition-colors">Textil Druckerei</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFINITE MARQUEE BANNER -->
+    <div class="w-full bg-amber-500 text-black py-3 overflow-hidden font-bold uppercase tracking-wider text-xs md:text-sm">
+      <div class="animate-marquee whitespace-nowrap">
+        <span class="mx-8">• WordPress Vermietung</span>
+        <span class="mx-8">• Klicklotse School Web</span>
+        <span class="mx-8">• High-End Textil Druckerei</span>
+        <span class="mx-8">• Custom Apparel</span>
+        <span class="mx-8">• Managed Hosting</span>
+        <!-- Loop Copy -->
+        <span class="mx-8">• WordPress Vermietung</span>
+        <span class="mx-8">• Klicklotse School Web</span>
+        <span class="mx-8">• High-End Textil Druckerei</span>
+        <span class="mx-8">• Custom Apparel</span>
+        <span class="mx-8">• Managed Hosting</span>
+      </div>
+    </div>
+
+    <!-- SECTION 1: KLICKLOTSE -->
+    <section id="klicklotse" class="panel min-h-screen flex flex-col justify-center px-8 md:px-20 bg-neutral-900/50 border-b border-neutral-800">
+      <div class="max-w-5xl space-y-6">
+        <div class="text-amber-500 font-mono text-sm">01 // FEATURED SOLUTION</div>
+        <h2 class="text-4xl md:text-6xl font-bold">Klicklotse — WordPress for Schools</h2>
+        <p class="text-lg text-neutral-400 max-w-2xl">
+          Turnkey WordPress rental templates built specifically for educational institutions. GDPR-compliant, accessible, and simple to manage.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+          <div class="p-6 rounded-xl bg-neutral-900 border border-neutral-800 space-y-3">
+            <h3 class="text-xl font-semibold text-white">Gymnasium Demo</h3>
+            <p class="text-sm text-neutral-400">Complete portal structure with news feeds, department pages, and event calendars.</p>
+            <a href="#" class="inline-block text-amber-400 hover:underline text-sm font-medium">Launch Demo →</a>
+          </div>
+          <div class="p-6 rounded-xl bg-neutral-900 border border-neutral-800 space-y-3">
+            <h3 class="text-xl font-semibold text-white">Primary School Demo</h3>
+            <p class="text-sm text-neutral-400">Colorful, accessible, and simplified structure for elementary education.</p>
+            <a href="#" class="inline-block text-amber-400 hover:underline text-sm font-medium">Launch Demo →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: GENERAL WP RENTING -->
+    <section id="wp-renting" class="panel min-h-screen flex flex-col justify-center px-8 md:px-20 border-b border-neutral-800">
+      <div class="max-w-5xl space-y-6">
+        <div class="text-amber-500 font-mono text-sm">02 // SERVICES</div>
+        <h2 class="text-4xl md:text-6xl font-bold">WordPress Vermietung</h2>
+        <p class="text-lg text-neutral-400 max-w-2xl">
+          Enterprise-grade websites without heavy initial capital expenditure. Managed hosting, regular maintenance, and custom design included.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+          <div class="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800">
+            <h3 class="font-bold mb-2">Zero CapEx</h3>
+            <p class="text-sm text-neutral-400">No high setup costs. Predictable monthly operating expenses.</p>
+          </div>
+          <div class="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800">
+            <h3 class="font-bold mb-2">Fully Managed</h3>
+            <p class="text-sm text-neutral-400">Continuous core/plugin updates, backups, and security monitoring.</p>
+          </div>
+          <div class="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800">
+            <h3 class="font-bold mb-2">High Performance</h3>
+            <p class="text-sm text-neutral-400">Optimized speed, modern Gutenberg blocks, and custom CSS setups.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TEXTIL DRUCKEREI -->
+    <section id="textil" class="panel min-h-screen flex flex-col justify-center px-8 md:px-20 bg-neutral-900/50 border-b border-neutral-800">
+      <div class="max-w-5xl space-y-6">
+        <div class="text-amber-500 font-mono text-sm">03 // PRINT STUDIO</div>
+        <h2 class="text-4xl md:text-6xl font-bold">Textil Druckerei</h2>
+        <p class="text-lg text-neutral-400 max-w-2xl">
+          Custom garment decoration and merchandise printing. From corporate workwear to school graduation shirts.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+          <div class="aspect-square bg-neutral-900 rounded-lg flex items-center justify-center border border-neutral-800">
+            <span class="text-xs text-neutral-400 uppercase tracking-widest font-mono">DTF Transfer</span>
+          </div>
+          <div class="aspect-square bg-neutral-900 rounded-lg flex items-center justify-center border border-neutral-800">
+            <span class="text-xs text-neutral-400 uppercase tracking-widest font-mono">Stick / Embroidery</span>
+          </div>
+          <div class="aspect-square bg-neutral-900 rounded-lg flex items-center justify-center border border-neutral-800">
+            <span class="text-xs text-neutral-400 uppercase tracking-widest font-mono">Siebdruck</span>
+          </div>
+          <div class="aspect-square bg-neutral-900 rounded-lg flex items-center justify-center border border-neutral-800">
+            <span class="text-xs text-neutral-400 uppercase tracking-widest font-mono">Merch Collection</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PROJECT SHOWCASE -->
+    <section id="showcase" class="panel min-h-screen flex flex-col justify-center px-8 md:px-20 border-b border-neutral-800">
+      <div class="max-w-5xl space-y-6">
+        <div class="text-amber-500 font-mono text-sm">04 // OUTBOUND SHOWCASE</div>
+        <h2 class="text-4xl md:text-6xl font-bold">Project Portal</h2>
+        <p class="text-lg text-neutral-400 max-w-2xl">
+          Explore active external projects and sub-sites connected to Webdunk.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+          <a href="#" target="_blank" class="p-6 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 transition-all">
+            <span class="text-xs text-amber-500 font-mono">Live Project ↗</span>
+            <h3 class="text-xl font-bold text-white mt-2">School Site Alpha</h3>
+            <p class="text-xs text-neutral-500 mt-1">Built via Klicklotse platform</p>
+          </a>
+          <a href="#" target="_blank" class="p-6 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 transition-all">
+            <span class="text-xs text-amber-500 font-mono">Live Project ↗</span>
+            <h3 class="text-xl font-bold text-white mt-2">Brand Merch Store</h3>
+            <p class="text-xs text-neutral-500 mt-1">Textil Druckerei Showcase</p>
+          </a>
+          <a href="#" target="_blank" class="p-6 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 transition-all">
+            <span class="text-xs text-amber-500 font-mono">Live Project ↗</span>
+            <h3 class="text-xl font-bold text-white mt-2">Corporate Portal</h3>
+            <p class="text-xs text-neutral-500 mt-1">Managed WP Renting Client</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="px-8 md:px-20 py-16 bg-black text-neutral-400 border-t border-neutral-800 flex flex-col md:flex-row justify-between gap-8">
+      <div>
+        <h2 class="text-2xl font-bold text-white mb-2">WEBDUNK</h2>
+        <p class="text-sm">Digital Solutions & Textile Printing</p>
+      </div>
+      <div class="flex gap-12 text-sm">
+        <div>
+          <p class="font-semibold text-white mb-2">Legal</p>
+          <ul class="space-y-1">
+            <li><a href="#" class="hover:text-white">Impressum</a></li>
+            <li><a href="#" class="hover:text-white">Datenschutz</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-white mb-2">Contact</p>
+          <p>info@webdunk.de</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- JAVASCRIPT: DRAWER & GSAP -->
+  <script>
+    lucide.createIcons();
+
+    // Navigation Drawer Logic
+    const menuToggle = document.getElementById('menu-toggle');
+    const navDrawer = document.getElementById('nav-drawer');
+    const menuIcon = document.getElementById('menu-icon');
+    const navLinks = document.querySelectorAll('.nav-link');
+    let isOpen = false;
+
+    function toggleMenu() {
+      isOpen = !isOpen;
+      if (isOpen) {
+        navDrawer.classList.remove('-translate-x-full');
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        navDrawer.classList.add('-translate-x-full');
+        menuIcon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) toggleMenu();
+      });
+    });
+
+    // GSAP ScrollTrigger Desktop Pinning
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function() {
+        let panels = gsap.utils.toArray('.panel');
+        panels.forEach((panel) => {
+          ScrollTrigger.create({
+            trigger: panel,
+            start: "top top",
+            pin: true,
+            pinSpacing: false
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

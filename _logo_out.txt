@@ -1,0 +1,640 @@
+>>> START d1280 1280x900 port=9500
+    ready: TIMEOUT pad=56px n=39
+=== d1280 (1280x900) ===
+{
+ "innerW": 1256,
+ "clientW": 1246,
+ "tailwindPadLeft": "56px",
+ "railW": 88,
+ "h1": {
+  "fs": "188.4px",
+  "chars": 7,
+  "lines": 1,
+  "boxW": 1046,
+  "clientW": 1046,
+  "scrollW": 1046,
+  "boxH": 170
+ },
+ "scrollY": 0,
+ "footerTopInView": 10999,
+ "docH": 11726,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 20,
+   "y": 28,
+   "w": 47,
+   "h": 42,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -588,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 144,
+   "y": 11063,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1366 1366x900 port=9501
+    ready: ok pad=96px n=1
+=== d1366 (1366x900) ===
+{
+ "innerW": 1342,
+ "clientW": 1332,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "201.3px",
+  "chars": 7,
+  "lines": 2,
+  "boxW": 880,
+  "clientW": 880,
+  "scrollW": 880,
+  "boxH": 362
+ },
+ "scrollY": 0,
+ "footerTopInView": 10981,
+ "docH": 11771,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -631,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 11045,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1440 1440x900 port=9502
+    ready: ok pad=96px n=2
+=== d1440 (1440x900) ===
+{
+ "innerW": 1416,
+ "clientW": 1406,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "212.4px",
+  "chars": 7,
+  "lines": 2,
+  "boxW": 954,
+  "clientW": 954,
+  "scrollW": 954,
+  "boxH": 382
+ },
+ "scrollY": 0,
+ "footerTopInView": 10830,
+ "docH": 11620,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -668,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 10894,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1536 1536x900 port=9503
+    ready: ok pad=96px n=1
+=== d1536 (1536x900) ===
+{
+ "innerW": 1512,
+ "clientW": 1502,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "216px",
+  "chars": 7,
+  "lines": 2,
+  "boxW": 1050,
+  "clientW": 1050,
+  "scrollW": 1050,
+  "boxH": 389
+ },
+ "scrollY": 0,
+ "footerTopInView": 10710,
+ "docH": 11437,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -716,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 10774,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1600 1600x900 port=9504
+    ready: ok pad=96px n=2
+=== d1600 (1600x900) ===
+{
+ "innerW": 1576,
+ "clientW": 1566,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "216px",
+  "chars": 7,
+  "lines": 1,
+  "boxW": 1114,
+  "clientW": 1114,
+  "scrollW": 1114,
+  "boxH": 194
+ },
+ "scrollY": 0,
+ "footerTopInView": 10571,
+ "docH": 11268,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -748,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 10635,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1920 1920x1080 port=9505
+    ready: ok pad=96px n=1
+=== d1920 (1920x1080) ===
+{
+ "innerW": 1896,
+ "clientW": 1886,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "216px",
+  "chars": 7,
+  "lines": 1,
+  "boxW": 1434,
+  "clientW": 1434,
+  "scrollW": 1434,
+  "boxH": 194
+ },
+ "scrollY": 0,
+ "footerTopInView": 11924,
+ "docH": 12621,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -908,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 11988,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1440_footer 1440x900 port=9506
+    ready: ok pad=96px n=1
+=== d1440_footer (1440x900) ===
+{
+ "innerW": 1416,
+ "clientW": 1406,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "212.4px",
+  "chars": 7,
+  "lines": 2,
+  "boxW": 954,
+  "clientW": 954,
+  "scrollW": 954,
+  "boxH": 382
+ },
+ "scrollY": 10812,
+ "footerTopInView": 18,
+ "docH": 11620,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -668,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 82,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START d1440_drawer 1440x900 port=9507
+    ready: ok pad=96px n=2
+=== d1440_drawer (1440x900) ===
+{
+ "innerW": 1416,
+ "clientW": 1416,
+ "tailwindPadLeft": "96px",
+ "railW": 260,
+ "h1": {
+  "fs": "212.4px",
+  "chars": 7,
+  "lines": 2,
+  "boxW": 964,
+  "clientW": 964,
+  "scrollW": 964,
+  "boxH": 382
+ },
+ "scrollY": 0,
+ "footerTopInView": 10794,
+ "docH": 11584,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 28,
+   "y": 28,
+   "w": 156,
+   "h": 139,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 40,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 356,
+   "y": 10858,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+>>> START m390 390x844 port=9508
+    ready: ok pad=24px n=1
+=== m390 (390x844) ===
+{
+ "innerW": 492,
+ "clientW": 482,
+ "tailwindPadLeft": "24px",
+ "railW": 0,
+ "h1": {
+  "fs": "73.8px",
+  "chars": 7,
+  "lines": 1,
+  "boxW": 434,
+  "clientW": 434,
+  "scrollW": 434,
+  "boxH": 66
+ },
+ "scrollY": 0,
+ "footerTopInView": 14573,
+ "docH": 15749,
+ "logos": [
+  {
+   "cls": "brand-logo brand-logo--rail",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 16,
+   "y": 11,
+   "w": 38,
+   "h": 34,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--drawer",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": -468,
+   "y": 24,
+   "w": 34,
+   "h": 30,
+   "filter": "none"
+  },
+  {
+   "cls": "brand-logo brand-logo--footer brand-logo--invert",
+   "src": "assets/img/logo.jpg",
+   "complete": true,
+   "nw": 1600,
+   "nh": 1423,
+   "x": 24,
+   "y": 14637,
+   "w": 99,
+   "h": 88,
+   "filter": "invert(1)"
+  }
+ ]
+}
+FERTIG 9 Jobs

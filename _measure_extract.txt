@@ -1,0 +1,136 @@
+﻿=== 1280 ===
+VIEWPORT=1256x808
+--rail-w=88px
+HERO_H1_RECT=l=144 r=1190 w=1046 t=173
+HERO_H1_clientW=1046 scrollW=1046
+HERO_FONT=188.4px ls=-10.362px
+HERO_LINE_clientW=1046 scrollW=1046
+HERO_SUM_W=932.80
+HERO_LINES=["W","E","B","DUNK"]
+EM_FACTOR=4.9512
+SPLIT0 H2 class=section-title mt-5 text="Klicklotse"
+SPLIT0_clientW=479 scrollW=479 font=90.432px rect=l=144 r=623 w=479 t=1104
+SPLIT0_LINES=["Klicklotse"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT1 H2 class=section-title mt-5 text="WP Renting"
+SPLIT1_clientW=466 scrollW=466 font=90.432px rect=l=144 r=610 w=466 t=2799
+SPLIT1_LINES=["WP","Renting"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT2 H2 class=section-title mt-5 text="Textil Druck"
+SPLIT2_clientW=479 scrollW=479 font=90.432px rect=l=144 r=623 w=479 t=4367
+SPLIT2_LINES=["Textil","Druck"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT3 H2 class=section-title mt-5 text="Showcase"
+SPLIT3_clientW=570 scrollW=570 font=90.432px rect=l=144 r=714 w=570 t=5834
+SPLIT3_LINES=["Showcase"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT4 H2 class=section-title mt-5 text="Print Specs"
+SPLIT4_clientW=570 scrollW=570 font=90.432px rect=l=144 r=714 w=570 t=7466
+SPLIT4_LINES=["PrintSpecs"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT5 H2 class=section-title mt-5 text="Webdunk"
+SPLIT5_clientW=468 scrollW=468 font=90.432px rect=l=144 r=612 w=468 t=8448
+SPLIT5_LINES=["Webdunk"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT6 H2 class=section-title mt-5 text="Services"
+SPLIT6_clientW=570 scrollW=570 font=90.432px rect=l=144 r=714 w=570 t=9211
+SPLIT6_LINES=["Services"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+SPLIT7 H2 class=section-title mt-5 text="Kontakt"
+SPLIT7_clientW=442 scrollW=442 font=90.432px rect=l=144 r=586 w=442 t=10341
+SPLIT7_LINES=["Kontakt"] t0=matrix(1, 0, 0, 1, 0, 93.5)
+=== 1440 ===
+VIEWPORT=1416x808
+--rail-w=260px
+HERO_H1_RECT=l=356 r=1310 w=954 t=121
+HERO_H1_clientW=954 scrollW=954
+HERO_FONT=212.4px ls=-11.682px
+HERO_LINE_clientW=954 scrollW=954
+HERO_SUM_W=1051.64
+HERO_LINES=["W","E","B","D","U","N","K"]
+EM_FACTOR=4.9512
+SPLIT0 H2 class=section-title mt-5 text="Klicklotse"
+SPLIT0_clientW=434 scrollW=434 font=96px rect=l=356 r=790 w=434 t=1176
+SPLIT0_LINES=["Klicklotse"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT1 H2 class=section-title mt-5 text="WP Renting"
+SPLIT1_clientW=423 scrollW=423 font=96px rect=l=356 r=779 w=423 t=2881
+SPLIT1_LINES=["WP","Renting"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT2 H2 class=section-title mt-5 text="Textil Druck"
+SPLIT2_clientW=434 scrollW=434 font=96px rect=l=356 r=790 w=434 t=4506
+SPLIT2_LINES=["Textil","Druck"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT3 H2 class=section-title mt-5 text="Showcase"
+SPLIT3_clientW=604 scrollW=604 font=96px rect=l=356 r=960 w=604 t=6049
+SPLIT3_LINES=["Showcase"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT4 H2 class=section-title mt-5 text="Print Specs"
+SPLIT4_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=7267
+SPLIT4_LINES=["PrintSpecs"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT5 H2 class=section-title mt-5 text="Webdunk"
+SPLIT5_clientW=424 scrollW=426 font=96px rect=l=356 r=780 w=424 t=8296
+SPLIT5_LINES=["Webdunk"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT6 H2 class=section-title mt-5 text="Services"
+SPLIT6_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=9095
+SPLIT6_LINES=["Services"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT7 H2 class=section-title mt-5 text="Kontakt"
+SPLIT7_clientW=401 scrollW=401 font=96px rect=l=356 r=757 w=401 t=10219
+SPLIT7_LINES=["Kontakt"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+=== 1600 ===
+VIEWPORT=1576x808
+--rail-w=260px
+HERO_H1_RECT=l=356 r=1470 w=1114 t=161
+HERO_H1_clientW=1114 scrollW=1114
+HERO_FONT=216px ls=-11.88px
+HERO_LINE_clientW=1114 scrollW=1114
+HERO_SUM_W=1069.44
+HERO_LINES=["W","E","B","D","U","N","K"]
+EM_FACTOR=4.9511
+SPLIT0 H2 class=section-title mt-5 text="Klicklotse"
+SPLIT0_clientW=512 scrollW=512 font=96px rect=l=356 r=868 w=512 t=1123
+SPLIT0_LINES=["Klicklotse"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT1 H2 class=section-title mt-5 text="WP Renting"
+SPLIT1_clientW=499 scrollW=499 font=96px rect=l=356 r=855 w=499 t=2825
+SPLIT1_LINES=["WP","Renting"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT2 H2 class=section-title mt-5 text="Textil Druck"
+SPLIT2_clientW=512 scrollW=512 font=96px rect=l=356 r=868 w=512 t=4416
+SPLIT2_LINES=["Textil","Druck"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT3 H2 class=section-title mt-5 text="Showcase"
+SPLIT3_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=5903
+SPLIT3_LINES=["Showcase"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT4 H2 class=section-title mt-5 text="Print Specs"
+SPLIT4_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=7054
+SPLIT4_LINES=["PrintSpecs"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT5 H2 class=section-title mt-5 text="Webdunk"
+SPLIT5_clientW=500 scrollW=500 font=96px rect=l=356 r=856 w=500 t=8043
+SPLIT5_LINES=["Webdunk"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT6 H2 class=section-title mt-5 text="Services"
+SPLIT6_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=8814
+SPLIT6_LINES=["Services"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT7 H2 class=section-title mt-5 text="Kontakt"
+SPLIT7_clientW=473 scrollW=473 font=96px rect=l=356 r=829 w=473 t=9954
+SPLIT7_LINES=["Kontakt"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+=== 1920 ===
+VIEWPORT=1896x808
+--rail-w=260px
+HERO_H1_RECT=l=356 r=1790 w=1434 t=161
+HERO_H1_clientW=1434 scrollW=1434
+HERO_FONT=216px ls=-11.88px
+HERO_LINE_clientW=1434 scrollW=1434
+HERO_SUM_W=1069.44
+HERO_LINES=["W","E","B","D","U","NK"]
+EM_FACTOR=4.9511
+SPLIT0 H2 class=section-title mt-5 text="Klicklotse"
+SPLIT0_clientW=668 scrollW=668 font=96px rect=l=356 r=1024 w=668 t=1169
+SPLIT0_LINES=["Klicklotse"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT1 H2 class=section-title mt-5 text="WP Renting"
+SPLIT1_clientW=651 scrollW=651 font=96px rect=l=356 r=1007 w=651 t=2887
+SPLIT1_LINES=["WPRenting"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT2 H2 class=section-title mt-5 text="Textil Druck"
+SPLIT2_clientW=668 scrollW=668 font=96px rect=l=356 r=1024 w=668 t=4416
+SPLIT2_LINES=["TextilDruck"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT3 H2 class=section-title mt-5 text="Showcase"
+SPLIT3_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=5815
+SPLIT3_LINES=["Showcase"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT4 H2 class=section-title mt-5 text="Print Specs"
+SPLIT4_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=6966
+SPLIT4_LINES=["PrintSpecs"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT5 H2 class=section-title mt-5 text="Webdunk"
+SPLIT5_clientW=652 scrollW=652 font=96px rect=l=356 r=1008 w=652 t=7875
+SPLIT5_LINES=["Webdunk"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT6 H2 class=section-title mt-5 text="Services"
+SPLIT6_clientW=630 scrollW=630 font=96px rect=l=356 r=986 w=630 t=8635
+SPLIT6_LINES=["Services"] t0=matrix(1, 0, 0, 1, 0, 99.2578)
+SPLIT7 H2 class=section-title mt-5 text="Kontakt"
+SPLIT7_clientW=617 scrollW=617 font=96px rect=l=356 r=973 w=617 t=9775
+SPLIT7_LINES=["Kontakt"] t0=matrix(1, 0, 0, 1, 0, 99.2578)

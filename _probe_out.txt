@@ -1,0 +1,26 @@
+﻿HTMLCLASS = scroll-smooth js cursor-visible is-ready
+ISREADY = true
+TYPEOF_GSAP = object
+TYPEOF_SCROLLTRIGGER = function
+H1_TEXT = WEBDUNK
+H1_CHAR_TRANSFORM = matrix(1, 0, 0, 1, 0, 112.269)
+H1_CHAR_IN_MASK = charTop=265 maskTop=153 maskBottom=255 charHeight=102
+TEXTIL_H2_TEXT = Textil Druck
+TEXTIL_INNER_TRANSFORM = matrix(1, 0, 0, 1, 0, 56.2719)
+FIRST_REVEAL_OPACITY = 0
+TRIGGER_LABEL = Men++ +�ffnen
+DRAWER_T0_TRANSFORM = matrix(1, 0, 0, 1, -756, 0)
+DRAWER_T0_RECT = {"x":-756,"y":0,"width":756,"height":488,"top":0,"right":0,"bottom":488,"left":-756}
+DRAWER_T0_ARIA = true
+DRAWER_OPEN_TRANSFORM = matrix(1, 0, 0, 1, -1512, 0)
+DRAWER_OPEN_RECT = {"x":-1512,"y":0,"width":756,"height":488,"top":0,"right":-756,"bottom":488,"left":-1512}
+DRAWER_OPEN_ARIA = false
+DRAWER_OPEN_LABEL = Men++ schlie+�en
+BACKDROP_HIDDEN_WHILE_OPEN = false
+BODY_OVERFLOW_WHILE_OPEN = hidden
+DRAWER_CLOSED_TRANSFORM = matrix(1, 0, 0, 1, -1512, 0)
+DRAWER_CLOSED_ARIA = true
+DRAWER_CLOSED_LABEL = Men++ +�ffnen
+BACKDROP_HIDDEN_WHILE_CLOSED = false
+BODY_OVERFLOW_WHILE_CLOSED = (leer)
+MARQUEE_TRANSFORM = matrix(1, 0, 0, 1, -7.9711, 0)

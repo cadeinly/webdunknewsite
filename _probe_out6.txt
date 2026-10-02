@@ -1,0 +1,33 @@
+﻿LEN=91307
+HTMLCLASS = scroll-smooth js cursor-visible is-ready
+ISREADY = true
+TYPEOF_GSAP = object
+TYPEOF_SCROLLTRIGGER = function
+H1_TEXT = WEBDUNK
+H1_CHAR_TRANSFORM = matrix(1, 0, 0, 1, 0, 0)
+H1_CHAR_IN_MASK = charTop=121 maskTop=121 maskBottom=503 sichtbar=true
+TEXTIL_INNER_TRANSFORM = matrix(1, 0, 0, 1, 0, 99.2578)
+TRIGGER_LABEL = MenÃ¼ Ã¶ffnen
+DRAWER_T0_TRANSFORM = matrix(1, 0, 0, 1, -708, 0)
+DRAWER_T0_RECT = left=-708 right=0 w=708
+DRAWER_T0_ARIA = true
+DRAWER_OPEN_TRANSFORM = matrix(1, 0, 0, 1, 0, 0)
+DRAWER_OPEN_RECT = left=0 right=708 w=708
+DRAWER_OPEN_ARIA = false
+DRAWER_OPEN_LABEL = MenÃ¼ schlieÃŸen
+DRAWER_OPEN_SICHTBAR = true
+BACKDROP_HIDDEN_WHILE_OPEN = false
+BODY_OVERFLOW_WHILE_OPEN = hidden
+DRAWER_CLOSED_TRANSFORM = matrix(1, 0, 0, 1, -708, 0)
+DRAWER_CLOSED_RECT = left=-708 right=0 w=708
+DRAWER_CLOSED_ARIA = true
+DRAWER_CLOSED_LABEL = MenÃ¼ Ã¶ffnen
+BACKDROP_HIDDEN_WHILE_CLOSED = true
+BODY_OVERFLOW_WHILE_CLOSED = (leer)
+CLOSE_ELEMENTS = 2
+MARQUEE_TRANSFORM = matrix(1, 0, 0, 1, -282.108, 0)
+TEXTIL_TWEEN_COUNT = 1
+TEXTIL_BEFORE = matrix(1, 0, 0, 1, 0, 99.2578)
+TEXTIL_END_TRANSFORM = matrix(1, 0, 0, 1, 0, 0)
+REVEAL_TWEEN_COUNT = 1
+REVEAL_END = opacity=1 transform=matrix(1, 0, 0, 1, 0, 0)

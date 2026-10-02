@@ -1,0 +1,148 @@
+>>> START vp1280 1304x900 port=9600
+    ready: ok pad=96px n=1
+=== vp1280 (1304x900) ===
+{
+ "vp": 1280,
+ "clientW": 1270,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 192,
+ "probeFs": 192,
+ "chars": 7,
+ "lines": 2,
+ "avail": 818,
+ "sumChars": 950,
+ "probeW": 951,
+ "need": 951,
+ "emFaktor": 4.951,
+ "reserve": -16.21,
+ "h1Rect": 818,
+ "boxH": 346
+}
+>>> START vp1342 1366x900 port=9601
+    ready: ok pad=96px n=2
+=== vp1342 (1366x900) ===
+{
+ "vp": 1342,
+ "clientW": 1332,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 201.3,
+ "probeFs": 201.3,
+ "chars": 7,
+ "lines": 2,
+ "avail": 880,
+ "sumChars": 996,
+ "probeW": 997,
+ "need": 997,
+ "emFaktor": 4.9509,
+ "reserve": -13.25,
+ "h1Rect": 880,
+ "boxH": 362
+}
+>>> START vp1416 1440x900 port=9602
+    ready: ok pad=96px n=1
+=== vp1416 (1440x900) ===
+{
+ "vp": 1416,
+ "clientW": 1406,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 212.4,
+ "probeFs": 212.4,
+ "chars": 7,
+ "lines": 2,
+ "avail": 954,
+ "sumChars": 1052,
+ "probeW": 1052,
+ "need": 1052,
+ "emFaktor": 4.9529,
+ "reserve": -10.27,
+ "h1Rect": 954,
+ "boxH": 382
+}
+>>> START vp1476 1500x900 port=9603
+    ready: ok pad=96px n=2
+=== vp1476 (1500x900) ===
+{
+ "vp": 1476,
+ "clientW": 1466,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 216,
+ "probeFs": 216,
+ "chars": 7,
+ "lines": 2,
+ "avail": 1014,
+ "sumChars": 1068,
+ "probeW": 1069,
+ "need": 1069,
+ "emFaktor": 4.951,
+ "reserve": -5.46,
+ "h1Rect": 1014,
+ "boxH": 389
+}
+>>> START vp1512 1536x900 port=9604
+    ready: ok pad=96px n=1
+=== vp1512 (1536x900) ===
+{
+ "vp": 1512,
+ "clientW": 1502,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 216,
+ "probeFs": 216,
+ "chars": 7,
+ "lines": 2,
+ "avail": 1050,
+ "sumChars": 1068,
+ "probeW": 1069,
+ "need": 1069,
+ "emFaktor": 4.951,
+ "reserve": -1.85,
+ "h1Rect": 1050,
+ "boxH": 389
+}
+>>> START vp1576 1600x900 port=9605
+    ready: ok pad=96px n=1
+=== vp1576 (1600x900) ===
+{
+ "vp": 1576,
+ "clientW": 1566,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 216,
+ "probeFs": 216,
+ "chars": 7,
+ "lines": 1,
+ "avail": 1114,
+ "sumChars": 1068,
+ "probeW": 1069,
+ "need": 1069,
+ "emFaktor": 4.951,
+ "reserve": 4,
+ "h1Rect": 1114,
+ "boxH": 194
+}
+>>> START vp1896 1920x1080 port=9606
+    ready: ok pad=96px n=1
+=== vp1896 (1920x1080) ===
+{
+ "vp": 1896,
+ "clientW": 1886,
+ "pad": "96px",
+ "railW": 260,
+ "fs": 216,
+ "probeFs": 216,
+ "chars": 7,
+ "lines": 1,
+ "avail": 1434,
+ "sumChars": 1068,
+ "probeW": 1069,
+ "need": 1069,
+ "emFaktor": 4.951,
+ "reserve": 25.42,
+ "h1Rect": 1434,
+ "boxH": 194
+}
+FERTIG 7 Jobs
