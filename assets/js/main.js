@@ -515,35 +515,45 @@
      der Browser-Vorschau — ganz ohne externe iFrame-Einbindung.
      ------------------------------------------------------------------------ */
   const DEMOS = {
-    grundschule: {
+    schulen: {
       accent: '#1F6F5C',
-      url: 'grundschule-sonnenblume.klicklotse.de',
-      brand: 'Grundschule Sonnenblume',
-      links: ['Startseite', 'Unsere Schule', 'Klassen', 'Termine'],
-      headline: 'Willkommen an der Grundschule Sonnenblume',
-      sub: 'Gemeinsam lernen, entdecken und wachsen — alle Infos für Eltern, Kinder und Kollegium.',
+      url: 'schulen.klick-lotse.de',
+      brand: 'Schulen · Klassen & Träger',
+      links: ['Startseite', 'Klassen', 'Termine', 'Kontakt'],
+      headline: 'Willkommen an Ihrer Schule',
+      sub: 'Termine, Elternbriefe und Klassenfotos — pflegbar ohne IT-Kenntnisse.',
       cta: 'Elternbriefe ansehen',
-      cards: ['Aktuelles', 'Ferienplan', 'Mensa']
+      cards: ['Aktuelles', 'Termine', 'Klassen']
     },
-    gymnasium: {
+    aerzte: {
+      accent: '#0F4C81',
+      url: 'aerzte.klick-lotse.de',
+      brand: 'Ärzte & Heilpraktiker · Praxis',
+      links: ['Startseite', 'Leistungen', 'Termine', 'Kontakt'],
+      headline: 'Ihre Praxis digital erreichbar',
+      sub: 'Leistungen, Sprechzeiten und Online-Terminanfrage — klar strukturiert für Patientinnen und Patienten.',
+      cta: 'Termin anfragen',
+      cards: ['Sprechzeiten', 'Leistungen', 'Kontakt']
+    },
+    gastro: {
+      accent: '#9A3412',
+      url: 'gastro.klick-lotse.de',
+      brand: 'Gastronomie · Menü & Reservierung',
+      links: ['Startseite', 'Menü', 'Reservierung', 'Kontakt'],
+      headline: 'Menü, Öffnungszeiten & Reservierung',
+      sub: 'Speisekarte, Tischreservierung und Gutscheine — einladend für Ihre Gäste.',
+      cta: 'Tisch reservieren',
+      cards: ['Menü', 'Reservierung', 'Anfahrt']
+    },
+    vereine: {
       accent: '#1E3A8A',
-      url: 'gymnasium-nord.klicklotse.de',
-      brand: 'Gymnasium Nord',
-      links: ['Startseite', 'Fächer', 'Oberstufe', 'Termine'],
-      headline: 'Gymnasium Nord — Wissen mit Weitblick',
-      sub: 'Fächer, Oberstufe, Projekte und Klausurpläne in einer klar strukturierten Schulwebsite.',
-      cta: 'Oberstufe entdecken',
-      cards: ['Klausurplan', 'Fächer', 'Projekte']
-    },
-    gesamtschule: {
-      accent: '#B45309',
-      url: 'gesamtschule-sued.klicklotse.de',
-      brand: 'Gesamtschule Süd',
-      links: ['Startseite', 'Über uns', 'Jahrgänge', 'Kontakt'],
-      headline: 'Gesamtschule Süd — alle Abschlüsse an einem Ort',
-      sub: 'Von Jahrgang 5 bis zum Abitur: Stundenpläne, AGs und Anmeldung digital organisiert.',
-      cta: 'Anmeldung starten',
-      cards: ['AG-Übersicht', 'Stundenplan', 'Anmeldung']
+      url: 'vereine.klick-lotse.de',
+      brand: 'Vereine & Verbände',
+      links: ['Startseite', 'Mitglieder', 'News', 'Kontakt'],
+      headline: 'Mitglieder, News & Termine gebündelt',
+      sub: 'Aktuelles, Trainingszeiten und Mitgliederbereich — ein Zuhause für Ihren Verein.',
+      cta: 'News ansehen',
+      cards: ['Termine', 'Mitglieder', 'News']
     }
   };
 
@@ -591,7 +601,7 @@
     };
 
     tabs.forEach((tab) => tab.addEventListener('click', () => apply(tab.getAttribute('data-demo'))));
-    apply('grundschule');
+    apply('schulen');
   }
 
   /* ------------------------------------------------------------------------
