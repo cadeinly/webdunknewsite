@@ -19,11 +19,11 @@
   --ash: #EDEDED;
   --white: #FFFFFF;
 
-  --rail-w: 88px;            /* Breite der fixen linken Menüleiste */
+  --rail-w: 80px;            /* Breite der fixen linken Menüleiste (schlank) */
   --ease-out: cubic-bezier(.22, 1, .36, 1);
   --ease-inout: cubic-bezier(.65, .05, .36, 1);
 }
-@media (min-width: 1280px) { :root { --rail-w: 260px; } }
+
 
 /* --------------------------------------------------------------------------
    2 · RESET & BASIS
@@ -150,13 +150,13 @@ a { color: inherit; text-decoration: none; }
    invertiert, damit der helle JPEG-Hintergrund im Schwarz verschwindet.
    -------------------------------------------------------------------------- */
 .brand-logo { display: block; width: auto; height: 34px; }   /* Default: Mobile Top-Bar */
-.brand-logo--rail { width: 48px; height: auto; transition: opacity .35s var(--ease-out); }
+.brand-logo--rail { width: 44px; height: auto; margin: 0 auto; transition: opacity .35s var(--ease-out); }
 .rail-brand:hover .brand-logo--rail { opacity: .7; }
 .brand-logo--drawer { height: 30px; }
 .brand-logo--footer { height: 88px; }
 .brand-logo--invert { filter: invert(1); }
 
-@media (min-width: 1280px) { .brand-logo--rail { width: 156px; } }
+
 
 
 /* --------------------------------------------------------------------------
@@ -167,8 +167,8 @@ a { color: inherit; text-decoration: none; }
 
 .rail-link {
   position: relative;
-  display: flex; width: 100%; align-items: center; gap: .75rem;
-  padding: .62rem .5rem; border-radius: 4px;
+  display: flex; width: 100%; align-items: center; justify-content: center; gap: .75rem;
+  padding: .7rem .5rem; border-radius: 4px;
   font-size: .82rem; color: var(--slate);
   transition: color .35s var(--ease-out), background-color .35s var(--ease-out);
 }
@@ -183,21 +183,23 @@ a { color: inherit; text-decoration: none; }
 .rail-link:hover, .rail-link.is-active { color: var(--ink); background: var(--mist); }
 .rail-link.is-active::before { height: 60%; }
 
-@media (min-width: 1280px) {
-  .rail-link { justify-content: flex-start; padding: .62rem 1rem; font-size: .86rem; }
-  .rail-link__label { display: inline; }
+/* Name als Chip: erscheint rechts neben der Leiste mit Fade + Slide */
+.rail-link::after {
+  content: attr(data-label);
+  position: absolute; left: calc(100% + 10px); top: 50%;
+  transform: translate3d(-10px, -50%, 0) scale(.94);
+  transform-origin: left center;
+  background: var(--ink); color: #fff;
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 7px 12px; border-radius: 3px; white-space: nowrap; z-index: 6;
+  opacity: 0; pointer-events: none;
+  transition: opacity .28s var(--ease-out), transform .42s var(--ease-out);
 }
-/* Unter 1280px: Label erscheint als Chip neben der Leiste */
-@media (max-width: 1279.98px) {
-  .rail-link:hover::after {
-    content: attr(data-label);
-    position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%);
-    background: var(--ink); color: #fff; font-size: 11px; letter-spacing: .12em;
-    text-transform: uppercase; padding: 6px 10px; border-radius: 3px; white-space: nowrap; z-index: 5;
-  }
+.rail-link:hover::after, .rail-link:focus-visible::after {
+  opacity: 1; transform: translate3d(0, -50%, 0) scale(1);
 }
 
-.rail-menu { display: flex; width: 100%; align-items: center; gap: .7rem; padding: .55rem 1rem; }
+.rail-menu { display: flex; width: 100%; align-items: center; justify-content: center; gap: .7rem; padding: .6rem 1rem; }
 .rail-menu__icon { display: inline-flex; width: 22px; height: 10px; flex-direction: column; justify-content: space-between; }
 .rail-menu__icon span {
   display: block; width: 100%; height: 1.5px; background: currentColor;
