@@ -1,7 +1,7 @@
 /* ==========================================================================
    WEBDUNK — Showcase Landingpage
    Datei : assets/js/main.js
-   Inhalt: 0) Utils/State   1) Smooth Scroll (Lenis optional)
+   Inhalt: 0) Utils/State   1) Smooth Scroll (Lenis + GSAP Sync)
            2) Navigation & Half-Screen-Drawer    3) Scroll-Animationen (GSAP)
            4) Marquee  5) Counter  6) Klicklotse-Preview  7) Accordion
            8) Formular  9) Cursor / Progress / Kleinkram
@@ -15,12 +15,6 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  /* GSAP gilt erst als verfügbar, wenn AUCH ScrollTrigger geladen wurde.
-     Fehlt eine der beiden Dateien (offline, Blocker, CDN-Fehler, Proxy),
-     würde ein ungeschütztes registerPlugin() eine ReferenceError werfen und
-     damit den kompletten Init-Block abbrechen: Titel blieben unsichtbar,
-     Menü, Formular und Accordion wären tot. Deshalb hier prüfen und sauber
-     auf die statische Ansicht umschalten. */
   let hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mqDesktop = window.matchMedia('(min-width: 768px)');
@@ -30,72 +24,130 @@
     drawerOpen: false,
     lenis: null,
     lastFocused: null,
-    velocity: 0
+    sectionTriggers: new Map()
   };
 
   if (hasGsap) {
     try {
       window.gsap.registerPlugin(window.ScrollTrigger);
-      window.gsap.defaults({ ease: 'power3.out', duration: 1 });
+      window.ScrollTrigger.config({ ignoreMobileResize: true });
+      window.gsap.defaults({ ease: 'power3.out', duration: 0.95 });
     } catch (err) {
       hasGsap = false;
       window.console.warn('[Webdunk] GSAP/ScrollTrigger nicht initialisierbar — statische Ansicht.', err);
     }
   }
 
-  /* Fällt GSAP aus, heben wir den "js"-Schutz auf, damit Titel, Hero und
-     alle Reveals sofort statisch sichtbar sind. */
   if (!hasGsap) document.documentElement.classList.remove('js');
 
   /* ------------------------------------------------------------------------
-     1 · SMOOTH SCROLL
-     Lenis ist optional: fehlt die Lib, greift natives Scrollen mit
-     scroll-behavior: smooth (siehe <html class="scroll-smooth">).
+     1 · SMOOTH SCROLL (Lenis + native Fallback ohne CSS-Konflikt)
      ------------------------------------------------------------------------ */
   function initSmoothScroll() {
+    /* WICHTIG: Natives CSS scroll-smooth deaktivieren, sobald JS übernimmt,
+       da es sonst gegen Lenis und GSAP ScrollTrigger kämpft! */
+    document.documentElement.classList.remove('scroll-smooth');
+
     if (typeof window.Lenis === 'undefined' || prefersReduced) return;
 
     state.lenis = new window.Lenis({
-      duration: 1.05,
-      lerp: 0.085,
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      syncTouch: false,        // Mobile: natives Touch-Scrolling bleibt aktiv
-      wheelMultiplier: 1,
+      syncTouch: false,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.5,
       gestureOrientation: 'vertical'
     });
 
     if (hasGsap) {
       state.lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((t) => state.lenis.raf(t * 1000));
+      gsap.ticker.add((time) => {
+        state.lenis.raf(time * 1000);
+      });
       gsap.ticker.lagSmoothing(0);
     } else {
-      const loop = (t) => { state.lenis.raf(t); window.requestAnimationFrame(loop); };
+      const loop = (t) => {
+        state.lenis.raf(t);
+        window.requestAnimationFrame(loop);
+      };
       window.requestAnimationFrame(loop);
     }
   }
 
-  /** Scrollt weich zu einer Sektion bzw. einem Element. */
-  function scrollToTarget(target, { onComplete } = {}) {
+  /**
+   * Berechnet die exakte Dokument-Y-Position einer Sektion — selbst dann,
+   * wenn GSAP das Element in einen .pin-spacer gepackt oder transformiert hat.
+   */
+  function getExactScrollTop(el) {
+    if (!el) return 0;
+
+    // 1. Falls ein ScrollTrigger für diese Sektion registriert ist -> exakter Startwert
+    if (hasGsap && state.sectionTriggers.has(el)) {
+      const st = state.sectionTriggers.get(el);
+      if (st && typeof st.start === 'number') {
+        return Math.max(0, Math.round(st.start));
+      }
+    }
+
+    // 2. Falls das Element in einem GSAP .pin-spacer steckt -> Spacer messen
+    const targetBox = el.parentElement && el.parentElement.classList.contains('pin-spacer')
+      ? el.parentElement
+      : el;
+
+    const mobileHeaderOffset = !mqDesktop.matches ? 56 : 0;
+    const rect = targetBox.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+    return Math.max(0, Math.round(rect.top + scrollTop - mobileHeaderOffset));
+  }
+
+  /** Scrollt präzise und butterweich zu einer Sektion. */
+  function scrollToTarget(target, { onComplete, immediate = false } = {}) {
     const el = typeof target === 'string' ? $(target) : target;
     if (!el) return;
 
-    const top = Math.round(el.getBoundingClientRect().top + window.pageYOffset);
+    if (hasGsap) ScrollTrigger.refresh();
+    const top = getExactScrollTop(el);
 
     if (state.lenis) {
       state.lenis.scrollTo(top, {
-        duration: 1.25,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-        onComplete
+        immediate: immediate || prefersReduced,
+        duration: 1.2,
+        lock: false,
+        easing: (t) => 1 - Math.pow(1 - t, 4),
+        onComplete: () => {
+          if (hasGsap) ScrollTrigger.update();
+          if (onComplete) onComplete();
+        }
       });
       return;
     }
-    window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
-    if (onComplete) window.setTimeout(onComplete, prefersReduced ? 0 : 700);
+
+    if (hasGsap && !prefersReduced && !immediate) {
+      const proxy = { y: window.pageYOffset };
+      gsap.to(proxy, {
+        y: top,
+        duration: 1.1,
+        ease: 'power3.inOut',
+        onUpdate: () => window.scrollTo(0, proxy.y),
+        onComplete: () => {
+          ScrollTrigger.update();
+          if (onComplete) onComplete();
+        }
+      });
+      return;
+    }
+
+    window.scrollTo({ top, behavior: prefersReduced || immediate ? 'auto' : 'smooth' });
+    if (onComplete) window.setTimeout(onComplete, prefersReduced || immediate ? 0 : 600);
   }
 
   /** Scroll-Sperre, solange der Drawer offen ist. */
   function lockScroll(lock) {
-    if (state.lenis) { lock ? state.lenis.stop() : state.lenis.start(); }
+    if (state.lenis) {
+      lock ? state.lenis.stop() : state.lenis.start();
+    }
     document.body.style.overflow = lock ? 'hidden' : '';
   }
 
@@ -104,13 +156,11 @@
      ------------------------------------------------------------------------ */
   const drawer = $('#nav-drawer');
   const backdrop = $('#drawer-backdrop');
-
   const drawerLinks = drawer ? $$('.drawer-link', drawer) : [];
 
   function setTriggerState(open) {
     $$('[data-drawer-open]').forEach((btn) => {
       btn.setAttribute('aria-expanded', String(open));
-      /* Die Trigger sind Umschalter -> Label mitführen */
       if (btn.hasAttribute('aria-label')) {
         btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
       }
@@ -127,25 +177,26 @@
 
     if (hasGsap && !prefersReduced) {
       gsap.killTweensOf([drawer, backdrop]);
-      /* "x: 0" löscht den aus dem Prozent-Transform der CSS-Klasse (.drawer,
-         translate3d(-100%,0,0)) gelesenen Pixelrest — sonst würde xPercent: 0
-         das Panel nur von -200% auf -100% schieben und es bliebe unsichtbar. */
       gsap.set(drawer, { xPercent: -100, x: 0 });
       if (backdrop) {
         gsap.set(backdrop, { opacity: 0 });
-        gsap.to(backdrop, { opacity: 1, duration: .5, ease: 'power2.out' });
+        gsap.to(backdrop, { opacity: 1, duration: 0.4, ease: 'power2.out' });
       }
-      gsap.to(drawer, { xPercent: 0, x: 0, duration: .85, ease: 'expo.out' });
-      gsap.fromTo(drawerLinks,
-        { yPercent: 60, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: .75, stagger: .045, delay: .1, ease: 'power3.out' });
+      gsap.to(drawer, { xPercent: 0, x: 0, duration: 0.7, ease: 'expo.out' });
+      gsap.fromTo(
+        drawerLinks,
+        { yPercent: 45, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.6, stagger: 0.04, delay: 0.08, ease: 'power3.out' }
+      );
     } else {
       drawer.style.transform = 'translate3d(0,0,0)';
     }
 
     lockScroll(true);
     const firstFocusable = drawer.querySelector('a, button');
-    if (firstFocusable) window.setTimeout(() => firstFocusable.focus({ preventScroll: true }), hasGsap ? 400 : 0);
+    if (firstFocusable) {
+      window.setTimeout(() => firstFocusable.focus({ preventScroll: true }), hasGsap ? 300 : 0);
+    }
   }
 
   function closeDrawer(opts) {
@@ -155,17 +206,19 @@
     drawer.setAttribute('aria-hidden', 'true');
     setTriggerState(false);
 
-    /* Backdrop muss in JEDEM Fall wieder verschwinden — auch wenn eine
-       laufende Animation unterbrochen wird (onInterrupt). */
-    const hideBackdrop = () => { if (backdrop) backdrop.hidden = true; };
+    const hideBackdrop = () => {
+      if (backdrop) backdrop.hidden = true;
+    };
 
     if (hasGsap && !prefersReduced) {
       gsap.killTweensOf([drawer, backdrop]);
-      gsap.to(drawer, { xPercent: -100, x: 0, duration: .65, ease: 'expo.inOut' });
+      gsap.to(drawer, { xPercent: -100, x: 0, duration: 0.55, ease: 'expo.inOut' });
       if (backdrop) {
         gsap.to(backdrop, {
-          opacity: 0, duration: .45,
-          onComplete: hideBackdrop, onInterrupt: hideBackdrop
+          opacity: 0,
+          duration: 0.35,
+          onComplete: hideBackdrop,
+          onInterrupt: hideBackdrop
         });
       }
       gsap.set(drawerLinks, { clearProps: 'all' });
@@ -191,8 +244,6 @@
   }
 
   function initNavigation() {
-    /* Trigger (Rail-Button, Mobile-Bar) schalten den Drawer um:
-       klick = öffnen, erneuter Klick = schließen. */
     $$('[data-drawer-open]').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -200,59 +251,94 @@
         else openDrawer();
       });
     });
-    /* Schliessen: Backdrop, Close-Button, ESC */
+
     $$('[data-drawer-close]').forEach((el) => el.addEventListener('click', () => closeDrawer()));
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && state.drawerOpen) closeDrawer();
-      /* Mini-Fokusfalle: Tab bleibt im offenen Drawer */
       if (e.key === 'Tab' && state.drawerOpen) {
         const focusables = $$('a[href], button:not([disabled])', drawer);
         if (!focusables.length) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
 
-    /* Alle Sprungmarken: Drawer schliessen + weiches Auto-Scrollen */
+    /* Alle Sprungmarken: Drawer sofort entsperren & punktgenau zur Sektion scrollen */
     $$('[data-target]').forEach((link) => {
       link.addEventListener('click', (e) => {
-        const target = link.getAttribute('data-target');
-        if (!target || target === '#') return;
+        const targetSelector = link.getAttribute('data-target');
+        if (!targetSelector || targetSelector === '#') return;
+        const targetEl = $(targetSelector);
+        if (!targetEl) return;
+
         e.preventDefault();
 
         const wasOpen = state.drawerOpen;
         if (wasOpen) closeDrawer({ restoreFocus: false });
 
-        /* Drawer-Animation abwarten, danach scrollen */
-        const delay = hasGsap && !prefersReduced ? (wasOpen ? 240 : 0) : 0;
+        if ( targetEl.id ) setActiveSection(targetEl.id);
+
+        /* Kurz warten bis Body-Overflow & Lenis wieder frei sind, dann exakt scrollen */
+        const delay = wasOpen ? 80 : 0;
         window.setTimeout(() => {
-          scrollToTarget(target);
-          if (window.history.replaceState) window.history.replaceState(null, '', target);
+          scrollToTarget(targetEl);
+          if (window.history.replaceState) {
+            window.history.replaceState(null, '', targetSelector);
+          }
         }, delay);
       });
     });
   }
 
-  /** Aktive Sektion hervorheben (Rail-Indikator). */
+  /** Aktive Sektion zuverlässig hervorheben (Rail-Indikator). */
   function initActiveSectionTracking() {
-    if (!hasGsap) return;
-    $$('[data-section]').forEach((section) => {
-      ScrollTrigger.create({
+    const sections = $$('[data-section]');
+    if (!sections.length) return;
+
+    if (!hasGsap) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.target.id) {
+              setActiveSection(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '-40% 0px -40% 0px' }
+      );
+      sections.forEach((s) => io.observe(s));
+      return;
+    }
+
+    sections.forEach((section) => {
+      const st = ScrollTrigger.create({
         trigger: section,
-        start: 'top 55%',
+        start: () => 'top ' + (!mqDesktop.matches ? '65px' : '45%'),
         end: 'bottom 45%',
-        onToggle: (self) => { if (self.isActive && section.id) setActiveSection(section.id); }
+        onToggle: (self) => {
+          if (self.isActive && section.id) setActiveSection(section.id);
+        }
       });
+      /* Speichert den Trigger am Startpunkt der Sektion für die Navigation */
+      const navTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: () => 'top ' + (!mqDesktop.matches ? '56px' : 'top')
+      });
+      state.sectionTriggers.set(section, navTrigger);
     });
   }
 
   /* ------------------------------------------------------------------------
-     3 · SCROLL-ANIMATIONEN (Split-Text, Hero, Reveals, Pinning)
+     3 · SCROLL-ANIMATIONEN (Split-Text, Hero, Reveals, Nahtloser Parallax)
      ------------------------------------------------------------------------ */
-
-  /** Zerlegt einen Textknoten in maskierte Zeichen- bzw. Wort-Spans. */
   function splitText(el) {
     const mode = el.getAttribute('data-split') || 'words';
     const text = el.textContent.replace(/\s+/g, ' ').trim();
@@ -271,7 +357,8 @@
       return $$('.split-char', el);
     }
 
-    text.split(' ').forEach((word, i) => {
+    const words = text.split(' ');
+    words.forEach((word, i) => {
       const mask = document.createElement('span');
       mask.className = 'split-word';
       const inner = document.createElement('span');
@@ -279,12 +366,12 @@
       inner.textContent = word;
       mask.appendChild(inner);
       el.appendChild(mask);
-      if (i < text.split(' ').length - 1) el.appendChild(document.createTextNode(' '));
+      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
     });
     return $$('.split-inner', el);
   }
 
-  /** Intro des Heros: Zeichen fahren aus der Maske, Rest fadet gestaffelt ein. */
+  /** Intro des Heros */
   function initHeroIntro() {
     const heroTitle = $('#home [data-split]');
     const heroBits = $$('#home [data-hero]');
@@ -296,171 +383,181 @@
     }
 
     const chars = splitText(heroTitle);
-    const tl = gsap.timeline({ delay: .2, defaults: { ease: 'expo.out' } });
-    /* WICHTIG: Startwerte explizit setzen. Die CSS-Maske (siehe style.css,
-       ".js .split-char") verschoben die Zeichen per translate3d() mit
-       PROZENT. GSAP liest daraus Pixelwerte und behält sie im Transform
-       bei — ein Tween auf yPercent: 0 allein würde den Titel also dauerhaft
-       unter der Maske hängen lassen. Darum "y: 0" im Startzustand. */
-    tl.fromTo(chars,
-      { yPercent: 110, y: 0 },
-      { yPercent: 0, y: 0, duration: 1.3, stagger: .05 }, 0)
-      .to(heroBits, { opacity: 1, y: 0, duration: 1, stagger: .1 }, .45)
-      .from('#home .scroll-cue', { opacity: 0, duration: 1 }, .9);
+    const tl = gsap.timeline({ delay: 0.15, defaults: { ease: 'expo.out' } });
 
-    /* Der Hero ist selbst ein Full-Screen-Takeover (data-pin-section):
-       Pinning, Layer-Parallax und Veil-Übergabe übernimmt initPinnedSection().
-       Hier bleibt nur das Ausblenden des Scroll-Hinweises — bewusst OHNE
-       Fade des Inhalts, damit beim Verlassen keine leere schwarze Fläche
-       entsteht (der Hero übergibt stattdessen nahtlos an die weisse Folgesektion). */
+    tl.fromTo(
+      chars,
+      { yPercent: 110, y: 0 },
+      { yPercent: 0, y: 0, duration: 1.2, stagger: 0.045 },
+      0
+    )
+      .fromTo(
+        heroBits,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 },
+        0.35
+      )
+      .from('#home .scroll-cue', { opacity: 0, duration: 0.9 }, 0.8);
+
     gsap.to('#home .scroll-cue', {
-      opacity: 0, ease: 'none',
+      opacity: 0,
+      ease: 'none',
       scrollTrigger: {
         trigger: '#home',
         start: 'top top',
-        end: () => '+=' + Math.round(window.innerHeight * .5),
+        end: '+=350',
         scrub: true
       }
     });
   }
 
-  /** Alle Überschriften mit [data-split] maskiert einfliegen lassen. */
+  /**
+   * Alle Überschriften mit [data-split] maskiert einfliegen lassen.
+   * KEIN "reset" beim Zurückscrollen — verhindert weisse Löcher beim Hochscrollen!
+   */
   function initSplitHeadings() {
     $$('[data-split]').forEach((el) => {
-      if (el.closest('#home')) return;               // Hero overnimmt initHeroIntro()
+      if (el.closest('#home')) return;
       const parts = splitText(el);
       if (!hasGsap || prefersReduced) {
         parts.forEach((p) => { p.style.transform = 'none'; });
         return;
       }
-      /* Start explizit aus der Maske (yPercent: 110) UND mit "y: 0", damit der
-         aus dem Prozent-Transform der CSS-Maske stammende Pixelrest gelöscht
-         wird — sonst bleiben die Überschriften unsichtbar. */
-      gsap.fromTo(parts,
-        { yPercent: 110, y: 0 },
+
+      gsap.fromTo(
+        parts,
+        { yPercent: 105, y: 0 },
         {
-          yPercent: 0, y: 0, duration: 1.15, stagger: .05, ease: 'expo.out',
-          /* Wiederholbar: beim erneuten Herunterscrollen laufen die
-             Überschriften jedes Mal wieder aus der Maske. */
-          scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none reset' }
-        });
+          yPercent: 0,
+          y: 0,
+          duration: 1.0,
+          stagger: 0.04,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
     });
   }
 
-  /** Generische Reveals: [data-reveal="up|scale|fade"] */
+  /**
+   * Generische Reveals: [data-reveal="up|scale|fade"]
+   * Bleiben nach dem ersten Einblenden sichtbar, damit beim Hochscrollen
+   * niemals leere weisse Sektoren entstehen.
+   */
   function initReveals() {
     const items = $$('[data-reveal]');
     if (!hasGsap || prefersReduced) {
-      items.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      items.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
       return;
     }
+
     items.forEach((el) => {
       gsap.to(el, {
-        opacity: 1, y: 0, scale: 1, duration: 1.05, ease: 'power3.out',
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.9,
+        ease: 'power3.out',
         delay: parseFloat(el.getAttribute('data-reveal-delay') || '0'),
-        /* Wiederholbar (kein "once"): jede Sektion baut sich bei jedem
-           Scroll-Durchgang erneut auf. */
-        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reset' }
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        }
       });
     });
   }
 
   /* ------------------------------------------------------------------------
-     3b · FULL-SCREEN TAKEOVER (Pinning + gescrubbte Transformationen)
-     Aktiv nur auf Desktop (>= 768px, ausreichend hoch). Auf Mobile bleibt
-     der normale Scrollfluss (siehe Requirements: unter 768px Fallback).
+     3b · SEAMLESS SECTION PARALLAX & FLOW
+     Ersetzt das künstliche Pin-Spacing + weisse Veil-Wand durch einen
+     nahtlosen, butterweichen Tiefen-Parallax-Fluss ohne tote Scroll-Strecken.
      ------------------------------------------------------------------------ */
-  function initPinnedSection(section) {
-    const inner = section.querySelector('.screen__inner');
-    const veil = section.querySelector('.screen__veil');
+  function initSectionFlow(section) {
     const title = section.querySelector('[data-pin="title"]');
     const lead = section.querySelector('[data-pin="lead"]');
     const media = section.querySelector('[data-pin="media"]');
     const ghost = section.querySelector('[data-pin="ghost"]');
     const cards = $$('[data-pin="card"]', section);
-    if (!inner) return;
 
-    /* A · Eintritt: Inhalte fahren ein, sobald die Sektion andockt.
-       Der Hero bringt seine eigene Intro-Choreografie mit (data-pin-intro="skip").
-       Wiederholbar: beim Zurückscrollen werden die Startwerte erneut gesetzt. */
-    const introTargets = [title, lead, media, ...cards].filter(Boolean);
+    /* Sanfter Eingangs-Flow für Haupt-Elemente der Sektion */
+    const introTargets = [lead, media, ...cards].filter(Boolean);
     if (introTargets.length && section.getAttribute('data-pin-intro') !== 'skip') {
-      gsap.from(introTargets, {
-        y: 48, opacity: 0, duration: 1.05, stagger: .09, ease: 'power3.out',
-        scrollTrigger: { trigger: section, start: 'top 72%', toggleActions: 'play none none reset' }
-      });
+      gsap.fromTo(
+        introTargets,
+        { y: 36, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.95,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
     }
 
-    /* B · Takeover: die Sektion wird gepinnt und beim Scrollen transformiert */
+    /* Nahtloser Scrub-Parallax über die natürliche Sektionshöhe (ohne leere Pin-Spacer!) */
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top top',
-        end: () => '+=' + Math.round(window.innerHeight * 0.85),
-        pin: section,
-        pinSpacing: true,
-        scrub: .7,
-        anticipatePin: 1,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.6,
         invalidateOnRefresh: true
       }
     });
 
-    /* Nur Layer animieren, die tatsächlich existieren (jede Sektion hat eine
-       eigene Mischung aus Ghost-Nummer, Titel, Lead, Medium und Karten). */
-    if (ghost) tl.to(ghost, { yPercent: -26, scale: 1.06, ease: 'none' }, 0);
-    if (media) tl.to(media, { yPercent: -9, scale: 1.05, ease: 'none' }, 0);
-    if (title) tl.to(title, { yPercent: -16, ease: 'none' }, 0);
-    if (lead) tl.to(lead, { yPercent: -24, ease: 'none' }, 0);
-    if (cards.length) tl.to(cards, { yPercent: -32, ease: 'none', stagger: .04 }, 0);
-
-    /* Die Veil-Farbe entspricht der Folgesektion (siehe style.css) — die
-       Kontrastfarbe wird exakt am Ende der Pin-Strecke voll deckend, sodass
-       die nächste Sektion ohne leeren Zwischenscreen andockt. */
-    if (veil) tl.fromTo(veil, { opacity: 0 }, { opacity: 1, duration: .22, ease: 'power2.in' }, .78);
-  }
-
-  /** Mobile-Fallback: kein Pinning, nur sanfte Layer-Parallaxen. */
-  function initMobileParallax(section) {
-    const media = section.querySelector('[data-pin="media"]');
-    const ghost = section.querySelector('[data-pin="ghost"]');
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-    if (media) tl.to(media, { y: -26, ease: 'none' }, 0);
-    if (ghost) tl.to(ghost, { y: -46, ease: 'none' }, 0);
+    if (ghost) {
+      tl.fromTo(ghost, { yPercent: 18 }, { yPercent: -22, ease: 'none' }, 0);
+    }
+    if (media) {
+      tl.fromTo(media, { y: 28 }, { y: -28, ease: 'none' }, 0);
+    }
+    if (title && !section.closest('#home')) {
+      tl.fromTo(title, { y: 12 }, { y: -14, ease: 'none' }, 0);
+    }
   }
 
   function initSectionTakeovers() {
     if (!hasGsap || prefersReduced) return;
-    const pinned = $$('[data-pin-section]');
-    if (!pinned.length) return;
+    const sections = $$('[data-pin-section]');
+    if (!sections.length) return;
 
-    const mm = gsap.matchMedia();
-    mm.add('(min-width: 768px) and (min-height: 660px)', () => {
-      pinned.forEach(initPinnedSection);
-    });
-    mm.add('(max-width: 767.98px)', () => {
-      pinned.forEach(initMobileParallax);
-    });
+    sections.forEach(initSectionFlow);
   }
 
   /* ------------------------------------------------------------------------
      4 · INFINITE MARQUEE
-     Läuft endlos und reagiert auf Scroll-Richtung & -Geschwindigkeit.
-     Ohne GSAP greift automatisch die CSS-Keyframe-Variante (.marquee--css).
      ------------------------------------------------------------------------ */
   function initMarquees() {
     $$('[data-marquee]').forEach((marquee) => {
       const track = marquee.querySelector('.marquee__track');
       if (!track) return;
 
-      if (!hasGsap || prefersReduced) { marquee.classList.add('marquee--css'); return; }
+      if (!hasGsap || prefersReduced) {
+        marquee.classList.add('marquee--css');
+        return;
+      }
 
       const reverse = marquee.getAttribute('data-marquee') === 'reverse';
       const dir = reverse ? -1 : 1;
-      const tween = gsap.fromTo(track,
+      const tween = gsap.fromTo(
+        track,
         { xPercent: dir === 1 ? 0 : -50 },
-        { xPercent: dir === 1 ? -50 : 0, duration: 30, ease: 'none', repeat: -1 });
+        { xPercent: dir === 1 ? -50 : 0, duration: 30, ease: 'none', repeat: -1 }
+      );
       tween.timeScale(dir);
 
       let resetId = 0;
@@ -469,12 +566,12 @@
         start: 'top bottom',
         end: 'bottom top',
         onUpdate: (self) => {
-          const boost = Math.min(Math.abs(self.getVelocity()) / 1400, 2.2);
-          gsap.to(tween, { timeScale: dir * (1 + boost), duration: .3, overwrite: true });
+          const boost = Math.min(Math.abs(self.getVelocity()) / 1500, 2.0);
+          gsap.to(tween, { timeScale: dir * (1 + boost), duration: 0.25, overwrite: true });
           window.clearTimeout(resetId);
           resetId = window.setTimeout(() => {
-            gsap.to(tween, { timeScale: dir, duration: .9, overwrite: true });
-          }, 180);
+            gsap.to(tween, { timeScale: dir, duration: 0.8, overwrite: true });
+          }, 160);
         }
       });
     });
@@ -491,18 +588,24 @@
       const suffix = el.getAttribute('data-counter-suffix') || '';
       const decimals = parseInt(el.getAttribute('data-counter-decimals') || '0', 10) || 0;
       const render = (v) => {
-        const num = decimals > 0
-          ? v.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
-          : nf.format(Math.round(v));
+        const num =
+          decimals > 0
+            ? v.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
+            : nf.format(Math.round(v));
         el.textContent = num + suffix;
       };
 
-      if (!hasGsap || prefersReduced) { render(to); return; }
+      if (!hasGsap || prefersReduced) {
+        render(to);
+        return;
+      }
 
       const obj = { v: from };
       render(from);
       gsap.to(obj, {
-        v: to, duration: 1.7, ease: 'power2.out',
+        v: to,
+        duration: 1.6,
+        ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top 92%', once: true },
         onUpdate: () => render(obj.v)
       });
@@ -510,40 +613,48 @@
   }
 
   /* ------------------------------------------------------------------------
-     6 · KLICKLOTSE-DEMO-PREVIEW (Screen 1 · WordPress Vermietung für Schulen)
-     Klick auf einen Demo-Tab tauscht Inhalte, Akzentfarbe und Ziel-URL
-     der Browser-Vorschau — ganz ohne externe iFrame-Einbindung.
+     6 · KLICKLOTSE-DEMO-PREVIEW
      ------------------------------------------------------------------------ */
   const DEMOS = {
-    grundschule: {
+    schulen: {
       accent: '#1F6F5C',
-      url: 'grundschule-sonnenblume.klicklotse.de',
-      brand: 'Grundschule Sonnenblume',
-      links: ['Startseite', 'Unsere Schule', 'Klassen', 'Termine'],
-      headline: 'Willkommen an der Grundschule Sonnenblume',
-      sub: 'Gemeinsam lernen, entdecken und wachsen — alle Infos für Eltern, Kinder und Kollegium.',
+      url: 'schulen.klick-lotse.de',
+      brand: 'Schulen · Klassen & Träger',
+      links: ['Startseite', 'Klassen', 'Termine', 'Kontakt'],
+      headline: 'Willkommen an Ihrer Schule',
+      sub: 'Termine, Elternbriefe und Klassenfotos — pflegbar ohne IT-Kenntnisse.',
       cta: 'Elternbriefe ansehen',
-      cards: ['Aktuelles', 'Ferienplan', 'Mensa']
+      cards: ['Aktuelles', 'Termine', 'Klassen']
     },
-    gymnasium: {
+    aerzte: {
+      accent: '#0F4C81',
+      url: 'aerzte.klick-lotse.de',
+      brand: 'Ärzte & Heilpraktiker · Praxis',
+      links: ['Startseite', 'Leistungen', 'Termine', 'Kontakt'],
+      headline: 'Ihre Praxis digital erreichbar',
+      sub: 'Leistungen, Sprechzeiten und Online-Terminanfrage — klar strukturiert für Patientinnen und Patienten.',
+      cta: 'Termin anfragen',
+      cards: ['Sprechzeiten', 'Leistungen', 'Kontakt']
+    },
+    gastro: {
+      accent: '#9A3412',
+      url: 'gastro.klick-lotse.de',
+      brand: 'Gastronomie · Menü & Reservierung',
+      links: ['Startseite', 'Menü', 'Reservierung', 'Kontakt'],
+      headline: 'Menü, Öffnungszeiten & Reservierung',
+      sub: 'Speisekarte, Tischreservierung und Gutscheine — einladend für Ihre Gäste.',
+      cta: 'Tisch reservieren',
+      cards: ['Menü', 'Reservierung', 'Anfahrt']
+    },
+    vereine: {
       accent: '#1E3A8A',
-      url: 'gymnasium-nord.klicklotse.de',
-      brand: 'Gymnasium Nord',
-      links: ['Startseite', 'Fächer', 'Oberstufe', 'Termine'],
-      headline: 'Gymnasium Nord — Wissen mit Weitblick',
-      sub: 'Fächer, Oberstufe, Projekte und Klausurpläne in einer klar strukturierten Schulwebsite.',
-      cta: 'Oberstufe entdecken',
-      cards: ['Klausurplan', 'Fächer', 'Projekte']
-    },
-    gesamtschule: {
-      accent: '#B45309',
-      url: 'gesamtschule-sued.klicklotse.de',
-      brand: 'Gesamtschule Süd',
-      links: ['Startseite', 'Über uns', 'Jahrgänge', 'Kontakt'],
-      headline: 'Gesamtschule Süd — alle Abschlüsse an einem Ort',
-      sub: 'Von Jahrgang 5 bis zum Abitur: Stundenpläne, AGs und Anmeldung digital organisiert.',
-      cta: 'Anmeldung starten',
-      cards: ['AG-Übersicht', 'Stundenplan', 'Anmeldung']
+      url: 'vereine.klick-lotse.de',
+      brand: 'Vereine & Verbände',
+      links: ['Startseite', 'Mitglieder', 'News', 'Kontakt'],
+      headline: 'Mitglieder, News & Termine gebündelt',
+      sub: 'Aktuelles, Trainingszeiten und Mitgliederbereich — ein Zuhause für Ihren Verein.',
+      cta: 'News ansehen',
+      cards: ['Termine', 'Mitglieder', 'News']
     }
   };
 
@@ -562,7 +673,8 @@
       cards: $('#demo-cards'),
       link: $('#demo-link')
     };
-    const escape = (str) => String(str).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const escape = (str) =>
+      String(str).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
     const apply = (key) => {
       const demo = DEMOS[key];
@@ -576,8 +688,9 @@
       if (els.sub) els.sub.textContent = demo.sub;
       if (els.cta) els.cta.textContent = demo.cta;
       if (els.cards) {
-        els.cards.innerHTML = demo.cards.map((c) =>
-          '<div class="frame__card"><b>' + escape(c) + '</b><div><i></i><i></i></div></div>').join('');
+        els.cards.innerHTML = demo.cards
+          .map((c) => '<div class="frame__card"><b>' + escape(c) + '</b><div><i></i><i></i></div></div>')
+          .join('');
       }
       if (els.link) els.link.href = 'https://' + demo.url;
 
@@ -585,19 +698,22 @@
 
       if (hasGsap && !prefersReduced) {
         const animated = [els.headline, els.sub, els.links, els.cards].filter(Boolean);
-        gsap.fromTo(animated, { y: 14, opacity: 0 },
-          { y: 0, opacity: 1, duration: .6, stagger: .06, ease: 'power3.out', overwrite: true });
+        gsap.fromTo(
+          animated,
+          { y: 12, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power3.out', overwrite: true }
+        );
       }
     };
 
     tabs.forEach((tab) => tab.addEventListener('click', () => apply(tab.getAttribute('data-demo'))));
-    apply('grundschule');
+    apply('schulen');
   }
 
   /* ------------------------------------------------------------------------
-     6b · SHOWCASE-FILTER (Screen 5)
-     Die Chips mit [data-filter] blenden die .work-card-Elemente ein/aus.
-     Die Kategorie steht am Element als data-cat.
+     6b · SHOWCASE-FILTER (Ideas4Net)
+     Aktualisiert nach dem Filtern auch ScrollTrigger, damit nachfolgende
+     Menü-Sprünge (#about, #contact) exakt auf der richtigen Höhe landen!
      ------------------------------------------------------------------------ */
   function initShowcaseFilter() {
     const grid = $('#showcase-grid');
@@ -607,30 +723,32 @@
     const chips = $$('[data-filter]');
     if (!cards.length || !chips.length) return;
 
-    const show = (card, visible) => {
-      if (visible) {
-        card.classList.remove('is-hidden');
-        if (hasGsap && !prefersReduced) {
-          gsap.fromTo(card, { opacity: 0, y: 18 },
-            { opacity: 1, y: 0, duration: .5, ease: 'power3.out', overwrite: true });
-        }
-      } else if (hasGsap && !prefersReduced) {
-        gsap.to(card, {
-          opacity: 0, y: 12, duration: .3, ease: 'power2.in', overwrite: true,
-          onComplete: () => { card.classList.add('is-hidden'); gsap.set(card, { clearProps: 'opacity,transform' }); }
-        });
-      } else {
-        card.classList.add('is-hidden');
-      }
+    const refreshLayout = () => {
+      if (hasGsap) ScrollTrigger.refresh();
+      if (state.lenis) state.lenis.resize();
     };
 
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
         const filter = chip.getAttribute('data-filter');
         chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+
+        const visibleCards = [];
         cards.forEach((card) => {
-          show(card, filter === 'all' || card.getAttribute('data-cat') === filter);
+          const isMatch = filter === 'all' || card.getAttribute('data-cat') === filter;
+          card.classList.toggle('is-hidden', !isMatch);
+          if (isMatch) visibleCards.push(card);
         });
+
+        if (hasGsap && !prefersReduced && visibleCards.length) {
+          gsap.fromTo(
+            visibleCards,
+            { opacity: 0, y: 16 },
+            { opacity: 1, y: 0, duration: 0.45, stagger: 0.03, ease: 'power3.out', overwrite: true }
+          );
+        }
+
+        window.requestAnimationFrame(refreshLayout);
       });
     });
   }
@@ -651,7 +769,13 @@
         if (hasGsap && !prefersReduced) {
           gsap.to(panel, {
             height: open ? panel.scrollHeight : 0,
-            duration: .55, ease: 'power3.inOut', overwrite: true
+            duration: 0.5,
+            ease: 'power3.inOut',
+            overwrite: true,
+            onComplete: () => {
+              ScrollTrigger.refresh();
+              if (state.lenis) state.lenis.resize();
+            }
           });
         } else {
           panel.style.height = open ? 'auto' : '0px';
@@ -664,9 +788,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     8 · KONTAKTFORMULAR (Client-seitige Validierung)
-     DEMO: Es wird nichts versendet. In Produktion hier einen fetch()-Call an
-     das eigene Postfach/CRM einbauen (siehe README.md → "Formular anbinden").
+     8 · KONTAKTFORMULAR
      ------------------------------------------------------------------------ */
   function initContactForm() {
     const form = $('#contact-form');
@@ -696,7 +818,9 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       let valid = true;
-      $$('[data-field]', form).forEach((field) => { if (!validate(field)) valid = false; });
+      $$('[data-field]', form).forEach((field) => {
+        if (!validate(field)) valid = false;
+      });
 
       if (!valid) {
         if (status) {
@@ -720,7 +844,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     9 · CUSTOM CURSOR (nur Zeigegeräte) & SCROLL-PROGRESS
+     9 · CUSTOM CURSOR & SCROLL-PROGRESS
      ------------------------------------------------------------------------ */
   function initCursor() {
     const dot = $('#cursor-dot');
@@ -729,10 +853,19 @@
 
     document.documentElement.classList.add('cursor-visible');
 
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let rx = mx, ry = my;
+    let mx = window.innerWidth / 2,
+      my = window.innerHeight / 2;
+    let rx = mx,
+      ry = my;
 
-    window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+      },
+      { passive: true }
+    );
 
     const interactive = 'a, button, input, textarea, select, .work-card, .demo-tab, .swatch';
     document.addEventListener('mouseover', (e) => {
@@ -743,8 +876,8 @@
     });
 
     const loop = () => {
-      rx += (mx - rx) * 0.15;
-      ry += (my - ry) * 0.15;
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
       dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
       ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
       window.requestAnimationFrame(loop);
@@ -769,68 +902,59 @@
      10 · KLEINKRAM & BOOTSTRAP
      ------------------------------------------------------------------------ */
   function initMisc() {
-    $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
-
-    $$('[data-to-top]').forEach((btn) => {
-      btn.addEventListener('click', (e) => { e.preventDefault(); scrollToTarget('#home'); });
+    $$('[data-year]').forEach((el) => {
+      el.textContent = String(new Date().getFullYear());
     });
 
-    /* Deep-Link (z. B. /#textil) nach dem Laden exakt anspringen */
+    $$('[data-to-top]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToTarget('#home');
+      });
+    });
+
     const hash = window.location.hash;
-    if (hash && $(hash)) window.setTimeout(() => scrollToTarget(hash), 320);
+    if (hash && $(hash)) {
+      window.setTimeout(() => scrollToTarget(hash), 250);
+    }
 
-    /* Positionen nach dem vollständigen Laden neu berechnen: Webfonts, Bilder
-       und das erst spät injizierte Tailwind-Play-CDN-CSS verändern das Layout.
-       Danach noch einmal prüfen, ob eine Einblendung ausgeblieben ist. */
     if (hasGsap) {
-      const refresh = () => { ScrollTrigger.refresh(); failsafeReveal(); };
-      window.addEventListener('load', refresh);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh).catch(() => {});
-      window.setTimeout(refresh, 900);
-      window.setTimeout(refresh, 2500);
-
-      /* Zusätzliches Netz beim Scrollen (gedrosselt, endet nach 20 Läufen) */
-      let failsafeRuns = 0;
-      let lastRun = 0;
-      window.addEventListener('scroll', () => {
-        if (failsafeRuns >= 20) return;
-        const now = Date.now();
-        if (now - lastRun < 400) return;
-        lastRun = now;
-        failsafeRuns += 1;
+      const refresh = () => {
+        ScrollTrigger.refresh();
+        if (state.lenis) state.lenis.resize();
         failsafeReveal();
-      }, { passive: true });
+      };
+      window.addEventListener('load', refresh);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(refresh).catch(() => {});
+      }
+      window.setTimeout(refresh, 600);
+      window.setTimeout(refresh, 1800);
     }
   }
 
-  /* Sicherheitsnetz: Bleibt eine Animation aus (Lib fehlt, Modul wirft,
-     reduziertes Motion), dürfen Titel & Inhalte nie unsichtbar hängen
-     bleiben — die "js"-Schutzmasken werden dann hart aufgehoben. */
   function releaseHiddenContent() {
     $$('[data-hero], [data-reveal]').forEach((el) => {
       el.style.opacity = '1';
       el.style.transform = 'none';
     });
-    $$('.split-char, .split-inner').forEach((el) => { el.style.transform = 'none'; });
+    $$('.split-char, .split-inner').forEach((el) => {
+      el.style.transform = 'none';
+    });
   }
 
-  /* Netz für Scroll-Animationen: Hat ScrollTrigger die Startpositionen
-     berechnet, bevor das Layout final war, kann eine Einblendung ausbleiben
-     -> Titel bleiben dann dauerhaft in der Maske hängen. Hier werden genau
-     solche Elemente freigegeben; laufende Tweens (isTweening) bleiben
-     unangetastet, bereits sichtige Elemente werden nicht angefasst. */
   function failsafeReveal() {
     if (!hasGsap || prefersReduced) return;
 
     const inView = (el) => {
       if (!el) return false;
       const rect = el.getBoundingClientRect();
-      return rect.bottom > 0 && rect.top < window.innerHeight * 0.9;
+      return rect.bottom > 0 && rect.top < window.innerHeight * 0.92;
     };
 
     $$('[data-reveal]').forEach((el) => {
       if (gsap.isTweening(el) || !inView(el)) return;
-      if (parseFloat(window.getComputedStyle(el).opacity) < .05) {
+      if (parseFloat(window.getComputedStyle(el).opacity) < 0.05) {
         gsap.set(el, { opacity: 1, y: 0, scale: 1, clearProps: 'transform' });
       }
     });
@@ -841,17 +965,15 @@
     });
   }
 
-  /** Startet alle Module. Ein Fehler in einem Modul darf die übrigen nicht
-      verhindern — sonst wäre nach einem Problem z. B. das Menü komplett tot. */
   function init() {
     [
       initSmoothScroll,
-      initNavigation,
       initHeroIntro,
       initSplitHeadings,
       initReveals,
       initSectionTakeovers,
       initActiveSectionTracking,
+      initNavigation,
       initMarquees,
       initCounters,
       initKlicklotsePreview,
@@ -870,7 +992,6 @@
       }
     });
 
-    /* Ohne Animationen (bzw. bei reduziertem Motion) sofort alles zeigen */
     if (!hasGsap || prefersReduced) releaseHiddenContent();
     document.documentElement.classList.add('is-ready');
   }
@@ -878,9 +999,3 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
-
-
-
-
-
-
